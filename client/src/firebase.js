@@ -1,5 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/firestore'
+
 const config = {
   apiKey: "AIzaSyCtEkeyRrSIElte8qoZZ_tZNIK9MhFB3jE",
   authDomain: "ca-hackathon-f0cb4.firebaseapp.com",
@@ -9,6 +11,13 @@ const config = {
   messagingSenderId: "53872148783"
 };
 firebase.initializeApp(config);
+const firestore = firebase.firestore()
 
 
-export default firebase
+export {
+  firebase,
+  firestore
+}
+
+
+
