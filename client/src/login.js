@@ -10,16 +10,13 @@ class Login extends Component {
     };
   }
 
-  uploadUserData = (uid, userData) => {
-    console.log("uploadUserData")
+  createNewUser = (uid, userData) => {
     const docRef = firestore.collection('users').doc(uid);
     const setData = docRef.set(userData);
-    console.log(setData);
   }
   getUserData = (uid) => {
     const docRef = firestore.collection('users').doc(uid);
     docRef.get().then(doc => {
-      console.log(doc)
       if (doc.exists) {
         return doc.data()
       } else {
@@ -29,10 +26,9 @@ class Login extends Component {
   }
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
+      this.props.changeUserState(user)
       if (user) {
-        this.props.changeUserState(user)
         this.setState({ user: user })
-        console.log(user)
         const data = this.getUserData(user.l)
         if (data) { //データがない時
           const userData = {
@@ -40,11 +36,8 @@ class Login extends Component {
             photoURL: user.photoURL,
             createdAt: Date.now()
           }
-          console.log("New user!")
-          this.uploadUserData(user.l, userData)
+          this.createNewUser(user.l, userData)
         }
-      } else {
-        this.props.changeUserState(user)
       }
     })
   }
@@ -54,23 +47,11 @@ class Login extends Component {
     firebase.auth().signInWithRedirect(provider)
   }
 
-  logout() {
-    firebase.auth().signOut()
-  }
 
   render() {
     return (
       <div className="Login">
-        <p className="Login-intro">
-          UID: {this.state.user && this.state.user.uid}
-        </p>
-        {this.state.user ? (
-          <div>
-            <button onClick={this.logout}>Google Logout</button>
-          </div>
-        ) : (
-            <button onClick={this.login}>Google Login</button>
-          )}
+        <button onClick={this.login}>Google Login</button>
       </div>
     )
   }
