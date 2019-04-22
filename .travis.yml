@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- 10.15.3
+install:
+  - npm install
+branches:
+  only:
+    - master
+script:
+	- npm run build
+deploy:
+  provider: firebase
+  skip_cleanup: true
+  token:
+    secure: $FIREBASE_TOKEN
+  project: $FIREBASE_PROJECT
