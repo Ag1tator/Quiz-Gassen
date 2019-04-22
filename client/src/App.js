@@ -1,41 +1,38 @@
 import React, { Component } from 'react'
-import firebase from './firebase'
+import { firebase } from './firebase'
+import Login from './login'
+import UserData from './UserData'
 import './App.css'
 
 class App extends Component {
   state = {
     user: null
   }
-
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
-      this.setState({ user })
-      console.log(user)
+  changeUserState = (value) => {
+    this.setState({
+      user: value
     })
   }
-
-  login() {
-    const provider = new firebase.auth.GoogleAuthProvider()
-    firebase.auth().signInWithRedirect(provider)
+  showState = () => {
+    console.log(this.state.user)
   }
 
   logout() {
     firebase.auth().signOut()
   }
 
-
   render() {
     return (
       <div className="App">
-        <p className="App-intro">
-          UID: {this.state.user && this.state.user.uid}
-        </p>
-
         {this.state.user ? (
-
-          <button onClick={this.logout}>Google Logout</button>
+          <div>
+            <UserData user={this.state.user}></UserData>
+            <button onClick={this.logout}>Google Logout</button>
+          </div>
         ) : (
-            <button onClick={this.login}>Google Login</button>
+            <div>
+              <Login user={this.state.user} changeUserState={this.changeUserState}></Login>
+            </div>
           )}
       </div>
     )
