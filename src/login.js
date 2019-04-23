@@ -6,7 +6,6 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
     };
   }
 
@@ -51,7 +50,7 @@ class Login extends Component {
   render() {
     return (
       <div className="Login">
-        <button onClick={this.login}>Google Login</button>
+        {this.state.user ? <button onClick={this.login}>Google Login</button> : <button onClick={this.logout}>Google Logout</button>}
       </div>
     )
   }

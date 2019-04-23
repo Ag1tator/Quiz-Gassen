@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { firebase } from './firebase'
+
+import { BrowserRouter, Route, Link } from 'react-router-dom'
+
 import Login from './login'
-import UserData from './UserData'
+import FormApp from './form'
+
 import './App.css'
 
 class App extends Component {
@@ -23,20 +27,35 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        {this.state.user ? (
-          <div>
-            <UserData user={this.state.user}></UserData>
-            <button onClick={this.logout}>Google Logout</button>
-          </div>
-        ) : (
-            <div>
-              <Login user={this.state.user} changeUserState={this.changeUserState}></Login>
-            </div>
-          )}
-      </div>
+      <BrowserRouter>
+        <div>
+          <ul>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/login'>Login</Link></li>
+            <li><Link to='/form'>New Quiz</Link></li>
+          </ul>
+          <hr />
+
+          <Route exact path='/' component={Home} />
+          <Route path='/login' render={() => <Login changeUserState={this.changeUserState} />} />
+          <Route path='/form' render={props => <FormApp changeUserState={this.changeUserState} />} />
+        </div>
+      </BrowserRouter>
     )
   }
 }
+
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+    <p>Welcome to ようこそ</p>
+  </div>
+)
+const Logout = () => (
+  <div>
+    <h2>logout</h2>
+    {this.logout()}
+  </div>
+)
 
 export default App
