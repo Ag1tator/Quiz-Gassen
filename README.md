@@ -1,3 +1,6 @@
+CA-Hackathon [![Build Status](https://travis-ci.com/NITTC-ComputerClub/CA-Hackathon.svg?token=QmxctCNsHVzyo23qbsQE&branch=master)](https://travis-ci.com/NITTC-ComputerClub/CA-Hackathon)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
