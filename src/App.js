@@ -51,11 +51,6 @@ const Home = () => (
     <p>Welcome to ようこそ</p>
   </div>
 )
-const Logout = () => (
-  <div>
-    <h2>logout</h2>
-    {this.logout()}
-  </div>
-)
+
 
 export default App
