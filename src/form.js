@@ -15,7 +15,8 @@ class FormApp extends React.Component {
         answer3: "",
         answer4: "",
         imageSrc: "",
-        age: ""
+        age: "",
+        description: "",
       }
     }
     this.onChange = this.onChange.bind(this);
@@ -47,6 +48,9 @@ class FormApp extends React.Component {
       case 'age':
         quiz.age = event.target.value;
         break;
+      case 'desc':
+        quiz.description = event.target.value;
+        break;
       default:
     }
 
@@ -74,6 +78,10 @@ class FormApp extends React.Component {
           <input type="text" name="body" value={this.state.quiz.body} onChange={this.handleChange} />
           <label htmlFor="age">年代</label>
           <input type="text" name="age" value={this.state.quiz.age} onChange={this.handleChange} />
+        </div>
+        <div>
+          <label htmlFor="desc">解説</label>
+          <input type="text" name="desc" value={this.state.quiz.body} onChange={this.handleChange} />
         </div>
         {/* answer*/}
         <div>

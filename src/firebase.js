@@ -14,9 +14,56 @@ firebase.initializeApp(config);
 const firestore = firebase.firestore()
 
 
+
+
+const uploadQuiz = (quiz) => {
+  /*
+  quiz: {
+        writer: props.uid,
+        body: "",
+        answerNum: -1,
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: "",
+        imageSrc: "",
+        age: ""
+      }
+  */
+  console.log(quiz)
+  const now = getCurrentTime();
+  quiz.writer = "";
+  firestore.collection('quiz').doc(now).set(quiz)
+    .then(() => {
+      console.log("Document successfully written!");
+    }).catch(error => {
+      console.error("Error writing document: ", error);
+    })
+
+}
 export {
   firebase,
-  firestore
+  firestore,
+  uploadQuiz
+}
+const getCurrentTime = () => {
+  //現在時刻取得（yyyymmddhhmmss)
+  const now = new Date();
+  const res = "" + now.getFullYear() + "" + padZero(now.getMonth() + 1) +
+    "" + padZero(now.getDate()) + "" + padZero(now.getHours()) + "" +
+    padZero(now.getMinutes()) + "" + padZero(now.getSeconds());
+  return res;
+}
+
+const padZero = num => {
+  let result;
+  if (num < 10) {
+    result = "0" + num;
+  } else {
+    result = "" + num;
+  }
+  return result;
+
 }
 
 
