@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 import Login from './login'
 import FormApp from './form'
 
-import './App.css'
+import './App.scss'
 
 class App extends Component {
   state = {
