@@ -38,7 +38,7 @@ class App extends Component {
 
           <Route exact path='/' component={Home} />
           <Route path='/login' render={() => <Login changeUserState={this.changeUserState} />} />
-          <Route path='/form' render={props => <FormApp changeUserState={this.changeUserState} />} />
+          {this.state.user ? <Route path='/form' render={props => <FormApp changeUserState={this.changeUserState} uid={this.state.user.l} />} /> : <div></div>}
         </div>
       </BrowserRouter>
     )

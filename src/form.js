@@ -10,12 +10,13 @@ class FormApp extends React.Component {
       quiz: {
         writer: this.props.uid,
         body: "",
-        answerNum: -1,
+        answerNum: "",
         answer1: "",
         answer2: "",
         answer3: "",
         answer4: "",
-        imageSrc: "",
+        imageSrc: null,
+        image: null,
         age: "",
         description: "",
       }
@@ -44,6 +45,7 @@ class FormApp extends React.Component {
         break;
       case 'image':
         const files = event.target.files
+        quiz.image = files.length === 0 ? null : files[0];
         quiz.imageSrc = files.length === 0 ? "" : createObjectURL(files[0]);
         break;
       case 'age':
@@ -51,6 +53,9 @@ class FormApp extends React.Component {
         break;
       case 'desc':
         quiz.description = event.target.value;
+        break;
+      case 'answerNum':
+        quiz.answerNum = event.target.value;
         break;
       default:
     }
@@ -64,6 +69,7 @@ class FormApp extends React.Component {
   }
   onSubmit = () => {
     console.log("onSubmit")
+    console.log(typeof (this.state.quiz.image))
     console.log(this.state.quiz)
     uploadQuiz(this.state.quiz)
   }
@@ -71,8 +77,7 @@ class FormApp extends React.Component {
   render() {
     return (
       <form action="javascript:void(0)" onSubmit={this.onSubmit}>
-        {this.state.quiz.imageSrc === "" ? <div> <input type="file" name="image" onChange={this.handleChange}></input></div> : <img src={this.state.quiz.imageSrc} alt="user's" />}
-
+        {this.state.quiz.imageSrc === null ? <div> <input type="file" name="image" onChange={this.handleChange}></input></div> : <img src={this.state.quiz.imageSrc} alt="user's" />}
         {/*body*/}
         <div>
           <label htmlFor="name">本文</label>
@@ -82,19 +87,23 @@ class FormApp extends React.Component {
         </div>
         <div>
           <label htmlFor="desc">解説</label>
-          <input type="text" name="desc" value={this.state.quiz.body} onChange={this.handleChange} />
+          <input type="text" name="desc" value={this.state.quiz.description} onChange={this.handleChange} />
         </div>
         {/* answer*/}
         <div>
-          <label htmlFor="answer1">答え１</label>
+          <label htmlFor="answer1">候補１</label>
           <input type="text" name="answer1" value={this.state.quiz.answer1} onChange={this.handleChange} />
 
-          <label htmlFor="answer2">答え2</label>
+          <label htmlFor="answer2">候補2</label>
           <input type="text" name="answer2" value={this.state.quiz.answer2} onChange={this.handleChange} />
-          <label htmlFor="answer3">答え3</label>
+          <label htmlFor="answer3">候補3</label>
           <input type="text" name="answer3" value={this.state.quiz.answer3} onChange={this.handleChange} />
-          <label htmlFor="answer4">答え4</label>
+          <label htmlFor="answer4">候補4</label>
           <input type="text" name="answer4" value={this.state.quiz.answer4} onChange={this.handleChange} />
+        </div>
+        <div>
+          <label htmlFor="answer1">答え</label>
+          <input type="text" name="answerNum" value={this.state.quiz.answerNum} onChange={this.handleChange} />
         </div>
         {/* Submit Button */}
         <button type="submit" >送信</button>
