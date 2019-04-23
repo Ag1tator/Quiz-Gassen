@@ -12,7 +12,7 @@ class Login extends Component {
 
   createNewUser = (uid, userData) => {
     const docRef = firestore.collection('users').doc(uid);
-    const setData = docRef.set(userData);
+    docRef.set(userData);
   }
   getUserData = (uid) => {
     const docRef = firestore.collection('users').doc(uid);
