@@ -1,3 +1,4 @@
+/* eslint no-script-url: 0 */
 import React from 'react';
 import { uploadQuiz } from './firebase'
 const createObjectURL = (window.URL || window.webkitURL).createObjectURL || window.createObjectURL;
