@@ -39,13 +39,31 @@ const uploadQuiz = (quiz) => {
     }).catch(error => {
       console.error("Error writing document: ", error);
     })
+}
 
+const getQuestions = () => {
+  const collectionRef = firestore.collection('quiz')
+  collectionRef.get().then(snap => {
+    snap.forEach(doc => {
+      if (doc.exists) {
+        console.log("document data", doc.data());
+      } else {
+        console.log("no document found");
+        return false
+      }
+    })
+    return snap
+  }).catch(err => {
+    console.log("error getting document", err)
+  })
 }
 export {
   firebase,
   firestore,
-  uploadQuiz
+  uploadQuiz,
+  getQuestions
 }
+
 const getCurrentTime = () => {
   //現在時刻取得（yyyymmddhhmmss)
   const now = new Date();
@@ -54,6 +72,8 @@ const getCurrentTime = () => {
     padZero(now.getMinutes()) + "" + padZero(now.getSeconds());
   return res;
 }
+
+
 
 const padZero = num => {
   let result;
