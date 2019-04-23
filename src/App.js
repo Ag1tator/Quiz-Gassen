@@ -4,8 +4,8 @@ import { firebase } from './firebase'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import Login from './login'
-
 import FormApp from './form'
+
 import './App.css'
 
 class App extends Component {
@@ -29,9 +29,16 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+          <ul>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/login'>Login</Link></li>
+            <li><Link to='/form'>New Quiz</Link></li>
+          </ul>
+          <hr />
+
           <Route exact path='/' component={Home} />
-          <Route path='/about' component={About} />
-          <Route path='/friends' component={Friends} />
+          <Route path='/login' component={Login} />
+          <Route path='/form' render={props => <FormApp changeUserState={this.changeUserState} />} />
         </div>
       </BrowserRouter>
     )
@@ -44,16 +51,11 @@ const Home = () => (
     <p>Welcome to ようこそ</p>
   </div>
 )
-const About = () => (
+const Logout = () => (
   <div>
-    <h2>About</h2>
-    <p>フレンズに投票するページです</p>
+    <h2>logout</h2>
+    {this.logout()}
   </div>
 )
-const Friends = () => (
-  <div>
-    <h2>Friends</h2>
-    <p>ここにフレンズのリストを書きます</p>
-  </div>
-)
+
 export default App
