@@ -37,7 +37,7 @@ class App extends Component {
           <hr />
 
           <Route exact path='/' component={Home} />
-          <Route path='/login' component={Login} />
+          <Route path='/login' render={() => <Login changeUserState={this.changeUserState} />} />
           <Route path='/form' render={props => <FormApp changeUserState={this.changeUserState} />} />
         </div>
       </BrowserRouter>
