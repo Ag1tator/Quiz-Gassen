@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import Login from './login'
 import FormApp from './form'
+import QuestionList from './questionList'
 
 import './App.css'
 
@@ -33,12 +34,14 @@ class App extends Component {
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/login'>Login</Link></li>
             <li><Link to='/form'>New Quiz</Link></li>
+            <li><Link to='/quizlist'>Quiz list</Link></li>
           </ul>
           <hr />
 
           <Route exact path='/' component={Home} />
           <Route path='/login' render={() => <Login changeUserState={this.changeUserState} />} />
           <Route path='/form' render={props => <FormApp changeUserState={this.changeUserState} />} />
+          <Route path='/quizlist' component={QuestionList} />
         </div>
       </BrowserRouter>
     )
