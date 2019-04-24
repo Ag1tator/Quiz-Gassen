@@ -50,7 +50,7 @@ class Login extends Component {
   render() {
     return (
       <div className="Login">
-        {this.state.user ? <button onClick={this.login}>Google Login</button> : <button onClick={this.logout}>Google Logout</button>}
+        {this.state.user ? <button onClick={this.logout}>Google Logout</button> : <button onClick={this.login}>Google Login</button>}
       </div>
     )
   }
