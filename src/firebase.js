@@ -42,21 +42,29 @@ const uploadQuiz = (quiz) => {
 }
 
 const getQuestions = () => {
-  const collectionRef = firestore.collection('quiz')
-  collectionRef.get().then(snap => {
-    snap.forEach(doc => {
-      if (doc.exists) {
-        console.log("document data", doc.data());
-      } else {
-        console.log("no document found");
-        return false
-      }
+  return new Promise((resolve, reject) => {
+    const collectionRef = firestore.collection('quiz')
+    collectionRef.get().then(snap => {
+      console.log(snap)
+      let questions = [];
+      snap.forEach(doc => {
+        if (doc.exists) {
+          console.log("document data", doc.data());
+          questions.push(doc.data());
+        } else {
+          console.log("no document found");
+        }
+      })
+      resolve(snap);
+      return
+    }).catch(err => {
+      console.log("error getting document", err)
+      reject(err)
     })
-    return snap
-  }).catch(err => {
-    console.log("error getting document", err)
   })
+
 }
+
 export {
   firebase,
   firestore,
