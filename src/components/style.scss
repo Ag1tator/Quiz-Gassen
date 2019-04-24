@@ -1,0 +1,32 @@
+.fullScreen {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.loginForm {
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    h1 {
+        font-size: calc(32px + 3vw);
+        margin: 64px 0 64px 0;
+    }
+}
+
+.primaryButton {
+    padding: 8px 24px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    background-color: #179DE9;
+    border-radius: 32px;
+    font-weight: 700;
+    font-size: 24px;
+}
