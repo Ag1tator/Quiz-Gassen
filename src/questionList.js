@@ -1,6 +1,6 @@
 import React from 'react';
 import { getQuestions } from './firebase'
-
+import TableElement from './List'
 
 /*
 age: "10"
@@ -39,24 +39,36 @@ class QuestionList extends React.Component {
     })
     return div
   }
+
+
   render() {
-    let a = [];
+    let list = null;
     if (this.state.questions !== null) {
       this.state.questions.forEach(doc => {
-        if (doc.exists) {
-          console.log("document data", doc.data());
-          a.push(<div><div>{doc.data().body}</div></div>)
-        } else {
-          console.log("no document found");
-        }
+        console.log(doc.data())
+        list = <TableElement body={doc.data().body} answer={doc.data().answer[doc.data().answerNum]} description={doc.data().description} />
       })
     }
-
     return (
-      <div className="container">
-        {this.state.questions ? a[0] : <div></div>}
+      <div>
+        {
+          this.state.questions ?
+            <div className="container">
+              <table>
+                <tbody>
+                  <tr>
+                    <th>質問</th><th>答え</th><th>解説</th>
+                  </tr>
+                  {list}
+                </tbody>
+              </table>
+            </div>
+            :
+            <div></div>
+        }
       </div>
     );
   }
 }
+
 export default QuestionList
