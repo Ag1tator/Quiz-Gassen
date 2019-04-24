@@ -59,17 +59,18 @@ const uploadQuiz = (quiz) => {
         age: ""
       }
   */
+
   console.log(quiz)
   const now = getCurrentTime();
+  const arr = [];
+  arr.push(quiz.answer1); arr.push(quiz.answer2); arr.push(quiz.answer3); arr.push(quiz.answer4);
+  console.log(arr)
   uploadImage(now, quiz.image).then(imageURL => {
     console.log("quiz", quiz)
     firestore.collection('quiz').doc(now).set({
       age: quiz.age,
-      answer1: quiz.answer1,
-      answer2: quiz.answer2,
-      answer3: quiz.answer3,
-      answer4: quiz.answer4,
-      answerNum: quiz.answerNum,
+      answer: arr,
+      answerNum: quiz.answerNum - 1,
       body: quiz.body,
       description: quiz.description,
       imageSrc: imageURL,
