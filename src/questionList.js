@@ -42,11 +42,11 @@ class QuestionList extends React.Component {
 
 
   render() {
-    let list = null;
+    let list = [];
     if (this.state.questions !== null) {
       this.state.questions.forEach(doc => {
         console.log(doc.data())
-        list = <TableElement body={doc.data().body} answer={doc.data().answer[doc.data().answerNum]} description={doc.data().description} />
+        list.push(<TableElement body={doc.data().body} answer={doc.data().answer[doc.data().answerNum]} description={doc.data().description} />)
       })
     }
     return (
