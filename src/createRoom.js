@@ -3,22 +3,30 @@ import React from "react";
 class CreateRoom extends React.Component {
   /*参考: https://itnext.io/building-a-dynamic-controlled-form-in-react-together-794a44ee552c */
   state = {
-    quiz: [{
-      quizID: ""
-    }],
+    quiz: [""],
     roomName: "",
     description: ""
   }
   addQuiz = (e) => {
+    let quiz = this.state.quiz;
+    quiz.push("")
     this.setState(prevState => ({
-      quiz: [...prevState.quiz, { quizID: "" }]
+      quiz: quiz
     }));
   }
-  handleSubmit = (e) => { e.preventDefault() }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.state)
+  }
   handleChange = (e) => {
-    if ("quizId".includes(e.target.className)) {
+    console.log(e.target.className)
+    console.log(e.target.dataset.id)
+    console.log("quiz".includes(e.target.className))
+    if ("quiz" === e.target.className) {
       let quiz = [...this.state.quiz]
-      quiz[e.target.dataset.id][e.target.className] = e.target.value
+      console.log(quiz)
+      quiz[e.target.dataset.id] = e.target.value
+
       this.setState({ quiz }, () => console.log(this.state.quiz))
     } else {
       this.setState({ [e.target.name]: e.target.value })
@@ -29,9 +37,9 @@ class CreateRoom extends React.Component {
     return (
       <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
         <label htmlFor="roomName">Room Name</label>
-        <input type="text" name="roomName" id="roomName" value={this.state.owner} />
+        <input type="text" name="roomName" id="roomName" value={this.state.owner} className="roomName" />
         <label htmlFor="description">Description</label>
-        <input type="text" name="description" id="description" value={this.state.description} />
+        <input type="text" name="description" id="description" value={this.state.description} className="description" />
         <button onClick={this.addQuiz}>Add new quiz</button>
         {
           quiz.map((val, idx) => {
@@ -44,7 +52,8 @@ class CreateRoom extends React.Component {
                   name={quizId}
                   data-id={idx}
                   id={quizId}
-                  className="name"
+                  className="quiz"
+                  value={this.state.quiz[idx]}
                 />
 
               </div>
