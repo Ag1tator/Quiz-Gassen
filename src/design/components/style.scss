@@ -247,3 +247,35 @@ $hover-quiz-button: #3DBCA5;
         }
     }
 }
+
+.imageRapper {
+    overflow: hidden;
+
+    .imageBackground {
+        width: 100vw;
+        height: 80vh;
+        background-color: #616161;
+
+        img {
+            width: 100vw;
+        }
+    }
+
+    footer {
+        text-align: center;
+        width: 100vw;
+        height: 20vh;
+        position: relative;
+        background-color: #496CA1;
+
+        h1 {
+            margin: 0;
+            width: 100vw;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
+    }
+}
