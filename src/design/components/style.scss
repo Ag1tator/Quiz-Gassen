@@ -1,6 +1,8 @@
 $primary-text: #616161;
 $primary-button: #179DE9;
 $hover-primary-button: #44BCFF;
+$quiz-button: #33A38F;
+$hover-quiz-button: #3DBCA5;
 
 .fullScreen {
     width: 100vw;
@@ -72,6 +74,76 @@ $hover-primary-button: #44BCFF;
             color: $primary-text;
             display: block;
             padding: 18px 0px 18px 16px;
+        }
+    }
+}
+
+.quizForm {
+    overflow: hidden;
+}
+
+.quizTopRapper {
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+    height: 40vh;
+
+    .quizTop {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+
+        h1 {
+            font-size: calc(24px + 3vw);
+            width: 100vw;
+            margin: 12px 0 12px 0;
+        }
+    
+        h2 {
+            font-size: calc(24px + 3vw);
+            width: 100vw;
+            margin: 0;
+        }
+    }
+}
+
+.quizList {
+    width: 100vw;
+    height: 60vh;
+
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+
+    display: grid;
+
+    li {
+        text-align: center;
+        position: relative;
+
+        a {
+            text-decoration: none;
+            color: $primary-text;
+            display: inline-block;
+            padding: 16px 0 16px 0;
+            width: 96vw;
+
+            color: white;
+            background-color: $quiz-button;
+            border-radius: 8px;
+            font-weight: 400;
+            font-size: 24px;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+            &:hover {
+                background-color: $hover-quiz-button;
+            }
         }
     }
 }
