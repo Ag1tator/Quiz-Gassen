@@ -1,0 +1,77 @@
+$primary-text: #616161;
+$primary-button: #179DE9;
+$hover-primary-button: #44BCFF;
+
+.fullScreen {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    color: $primary-text;
+}
+
+.loginForm {
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    h1 {
+        font-size: calc(32px + 3vw);
+        width: 100vw;
+        margin: 64px 0 64px 0;
+    }
+}
+
+.primaryButton {
+    padding: 8px 24px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    background-color: $primary-button;
+    border-radius: 32px;
+    font-weight: 700;
+    font-size: 24px;
+
+    &:hover {
+        background-color: $hover-primary-button;
+    }
+}
+
+.titleContainer {
+    padding: 12px;
+    color: white;
+    background-color: #496CA1;
+}
+
+.roomList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        position: relative;
+
+        ::before{
+            content: '';
+            position: absolute;
+            left: 50%;
+            display: inline-block;
+            bottom: 0px;
+            width: 96vw;
+            height: 1px;
+            transform: translateX(-50%);
+            background-color: #D7D7D7;
+        }
+
+        a {
+            text-decoration: none;
+            color: $primary-text;
+            display: block;
+            padding: 18px 0px 18px 16px;
+        }
+    }
+}
