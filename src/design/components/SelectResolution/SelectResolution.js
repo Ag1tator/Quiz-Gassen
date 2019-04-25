@@ -14,10 +14,10 @@ class Quiz extends Component {
                         </div>
                     </div>
                     <ul className="quizList">
-                        <li><a href="#">めっちゃ小さい</a></li>
-                        <li><a href="#">小さい</a></li>
-                        <li><a href="#">ちょっと小さい</a></li>
-                        <li><a href="#">ふつう</a></li>
+                        <li><button>めっちゃ小さい</button></li>
+                        <li><button>小さい</button></li>
+                        <li><button>ちょっと小さい</button></li>
+                        <li><button>ふつう</button></li>
                     </ul>
                 </div>
             </div>

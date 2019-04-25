@@ -34,6 +34,8 @@ $hover-quiz-button: #3DBCA5;
     text-align: center;
     color: white;
     background-color: $primary-button;
+    outline: none;
+    border-style: none;
     border-radius: 32px;
     font-weight: 700;
     font-size: 24px;
@@ -69,11 +71,19 @@ $hover-quiz-button: #3DBCA5;
             background-color: #D7D7D7;
         }
 
-        a {
+        button {
+            outline: none;
+            border-style: none;
+            background-color: transparent;
             text-decoration: none;
+            width: 100%;
+            text-align: left;
             color: $primary-text;
-            display: block;
             padding: 18px 0px 18px 16px;
+
+            &:hover {
+                background-color: #EFECEC;
+            }
         }
     }
 }
@@ -123,12 +133,15 @@ $hover-quiz-button: #3DBCA5;
         text-align: center;
         position: relative;
 
-        a {
+        button {
+            outline: none;
+            border-style: none;
             text-decoration: none;
             color: $primary-text;
             display: inline-block;
             padding: 16px 0 16px 0;
             width: 96vw;
+            height: 80%;
 
             color: white;
             background-color: $quiz-button;

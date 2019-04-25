@@ -8,7 +8,7 @@ class Home extends Component {
             <div className="fullScreen">
                 <div className="loginForm">
                     <h1>Title</h1>
-                    <a className="primaryButton" href="#">ログイン</a>
+                    <button className="primaryButton">ログイン</button>
                 </div>
             </div>
         )
