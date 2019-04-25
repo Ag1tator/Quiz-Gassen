@@ -63,7 +63,7 @@ class App extends Component {
 const Home = () => (
   <div>
     <h2>Home</h2>
-    <p>Welcome to ようこそ</p>
+    <p>俺の名はらっふぃ</p>
   </div>
 )
 
