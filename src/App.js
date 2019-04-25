@@ -41,7 +41,7 @@ class App extends Component {
             <li><Link to='/form'>New Quiz</Link></li>
             <li><Link to='/quizlist'>Quiz list</Link></li>
             <li><Link to='/transition'>transition</Link></li>
-            <li><Link to='/design/components/Home/Home'>Homw</Link></li>
+            <li><Link to='/design/components/Home/Home'>NewHome</Link></li>
 
           </ul>
           <hr />
@@ -51,7 +51,7 @@ class App extends Component {
           <Route path='/quizlist' component={QuestionList} />
           <Route path='/transition' render={() => <Transition />} />
           {this.state.user ? <Route path='/form' render={props => <FormApp changeUserState={this.changeUserState} uid={this.state.user.l} />} /> : <div></div>}
-          <Route path='/design/components/Home/Home' render={() => <Home />} />
+          <Route path='/design/components/Home/Home' component={Home} />
 
         </div>
       </BrowserRouter>
