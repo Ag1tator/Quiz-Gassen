@@ -80,7 +80,7 @@ class FormApp extends React.Component {
         {this.state.quiz.imageSrc === null ? <div> <input type="file" name="image" onChange={this.handleChange}></input></div> : <img src={this.state.quiz.imageSrc} alt="user's" />}
         {/*body*/}
         <div>
-          <label htmlFor="name">本文</label>
+          <label htmlFor="name">引用元</label>
           <input type="text" name="body" value={this.state.quiz.body} onChange={this.handleChange} />
           <label htmlFor="age">年代</label>
           <input type="text" name="age" value={this.state.quiz.age} onChange={this.handleChange} />
