@@ -19,15 +19,11 @@ class CreateRoom extends React.Component {
     console.log(this.state)
   }
   handleChange = (e) => {
-    console.log(e.target.className)
-    console.log(e.target.dataset.id)
-    console.log("quiz".includes(e.target.className))
     if ("quiz" === e.target.className) {
       let quiz = [...this.state.quiz]
-      console.log(quiz)
       quiz[e.target.dataset.id] = e.target.value
 
-      this.setState({ quiz }, () => console.log(this.state.quiz))
+      this.setState({ quiz })
     } else {
       this.setState({ [e.target.name]: e.target.value })
     }
