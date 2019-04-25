@@ -10,6 +10,10 @@ class Answer extends Component {
                     <div className="quizTopRapper">
                         <div className="quizTop">
                             <h1>自分の答えを<br />選択！</h1>
+                            <div className="loaderRapper none">
+                                <h1>正解発表待ち</h1>
+                                <div className="loader">Loading...</div>
+                            </div>
                         </div>
                     </div>
                     <ul className="quizList">
