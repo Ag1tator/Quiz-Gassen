@@ -11,7 +11,6 @@ import Transition from './transition'
 
 import NewHome from './design/components/Home/Home'
 
-
 import './App.scss'
 
 class App extends Component {
@@ -40,7 +39,6 @@ class App extends Component {
             <li><Link to='/login'>Login</Link></li>
             <li><Link to='/form'>New Quiz</Link></li>
             <li><Link to='/quizlist'>Quiz list</Link></li>
-            <li><Link to='/transition'>transition</Link></li>
             <li><Link to='/transition'>transition</Link></li>
             <li><Link to='/design/components/Home/Home'>NewHome</Link></li>
 
