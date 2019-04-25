@@ -46,20 +46,6 @@ const uploadImage = (filename, image) => {
 }
 
 const uploadQuiz = (quiz) => {
-  /*
-  quiz: {
-        writer: props.uid,
-        body: "",
-        answerNum: -1,
-        answer1: "",
-        answer2: "",
-        answer3: "",
-        answer4: "",
-        imageSrc: "",
-        age: ""
-      }
-  */
-
   console.log(quiz)
   const now = getCurrentTime();
   const arr = [];
@@ -71,24 +57,42 @@ const uploadQuiz = (quiz) => {
       age: quiz.age,
       answer: arr,
       answerNum: quiz.answerNum - 1,
-      body: quiz.body,
+      source: quiz.body,
       description: quiz.description,
       imageSrc: imageURL,
       writer: quiz.writer
     })
-      .then(() => {
-        console.log("Document successfully written!");
-      }).catch(error => {
-        console.error("Error writing document: ", error);
-      });
-  }).catch(err => {
-    console.error("error uploading image: ", err)
+  });
+}
+
+const getQuestions = () => {
+  return new Promise((resolve, reject) => {
+    const collectionRef = firestore.collection('quiz')
+    collectionRef.get().then(snap => {
+      console.log(snap)
+      let questions = [];
+      snap.forEach(doc => {
+        if (doc.exists) {
+          console.log("document data", doc.data());
+          questions.push(doc.data());
+        } else {
+          console.log("no document found");
+        }
+      })
+      resolve(snap);
+      return
+    }).catch(err => {
+      console.log("error getting document", err)
+      reject(err)
+    })
   })
 }
+
 export {
   firebase,
   firestore,
   uploadQuiz,
+  getQuestions,
   uploadImage
 }
 
@@ -99,6 +103,8 @@ const getCurrentTime = () => {
     padZero(now.getMinutes()) + "" + padZero(now.getSeconds());
   return res;
 }
+
+
 
 const padZero = num => {
   let result;

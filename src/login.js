@@ -29,7 +29,7 @@ class Login extends Component {
       if (user) {
         this.setState({ user: user })
         const data = this.getUserData(user.l)
-        if (data) { //データがない時
+        if (!data) { //データがない時
           const userData = {
             displayName: user.displayName,
             photoURL: user.photoURL,
