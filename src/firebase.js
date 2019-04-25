@@ -57,7 +57,7 @@ const uploadQuiz = (quiz) => {
       age: quiz.age,
       answer: arr,
       answerNum: quiz.answerNum - 1,
-      body: quiz.body,
+      source: quiz.body,
       description: quiz.description,
       imageSrc: imageURL,
       writer: quiz.writer
