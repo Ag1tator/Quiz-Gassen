@@ -12,12 +12,12 @@ class Room extends Component {
                     </div>
                 </header>
                 <ul className="roomList">
-                    <li><a href="">Hackthon</a></li>
-                    <li><a href="">Hackthon</a></li>
-                    <li><a href="">Hackthon</a></li>
-                    <li><a href="">Hackthon</a></li>
-                    <li><a href="">Hackthon</a></li>
-                    <li><a href="">Hackthon</a></li>
+                    <li><a>Hackthon</a></li>
+                    <li><a>Hackthon</a></li>
+                    <li><a>Hackthon</a></li>
+                    <li><a>Hackthon</a></li>
+                    <li><a>Hackthon</a></li>
+                    <li><a>Hackthon</a></li>
                 </ul>
             </div>
         )
