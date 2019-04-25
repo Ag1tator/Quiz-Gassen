@@ -62,6 +62,7 @@ const uploadQuiz = (quiz) => {
       imageSrc: imageURL,
       writer: quiz.writer
     })
+  });
 }
 
 const getQuestions = () => {
