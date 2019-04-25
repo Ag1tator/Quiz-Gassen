@@ -5,9 +5,12 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import Login from './login'
 import FormApp from './form'
-import QuestionList from './questionList'
 
-import './App.css'
+import QuestionList from './questionList'
+import Transition from './transition'
+
+
+import './App.scss'
 
 class App extends Component {
   state = {
@@ -35,13 +38,15 @@ class App extends Component {
             <li><Link to='/login'>Login</Link></li>
             <li><Link to='/form'>New Quiz</Link></li>
             <li><Link to='/quizlist'>Quiz list</Link></li>
+            <li><Link to='/transition'>transition</Link></li>
+
           </ul>
           <hr />
 
           <Route exact path='/' component={Home} />
           <Route path='/login' render={() => <Login changeUserState={this.changeUserState} />} />
-    
           <Route path='/quizlist' component={QuestionList} />
+          <Route path='/transition' render={() => <Transition />} />
           {this.state.user ? <Route path='/form' render={props => <FormApp changeUserState={this.changeUserState} uid={this.state.user.l} />} /> : <div></div>}
 
         </div>
