@@ -7,7 +7,9 @@ class Image extends Component {
         return (
             <div className="fullScreen imageRapper">
                 <div className="imageBackground">
-                    <img src="./hogehoge.png"></img>
+                  {
+                    //<img src="./hogehoge.png"></img> 
+                  }
                 </div>
                 <footer><h1>わかったら<br />画面をタップ！</h1></footer>
             </div>
