@@ -3,9 +3,23 @@ import React, { Component } from 'react'
 import './../style.scss'
 
 class Answer extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      fullScreen: false,
+      checkbutton: false
+    }
+  }
+
+  changeButtonState = () => {
+    this.setState({
+      checkbutton: true
+    })
+  }
+
     render() {
         return (
-            <div className="fullScreen">
+            <div className={this.state.fullScreen ? "fullScreen": "fullScreen backGroundGray"}>
                 <div className="quizForm">
                     <div className="quizTopRapper">
                         <div className="quizTop">
@@ -17,10 +31,10 @@ class Answer extends Component {
                         </div>
                     </div>
                     <ul className="quizList">
-                        <li><button>ソーダ</button></li>
-                        <li><button>カルピス</button></li>
-                        <li><button>R1</button></li>
-                        <li><button>オレンジジュース</button></li>
+                        <li className={this.state.checkbutton ? "hidden": ""}><button onClick={this.changeButtonState}>ソーダ</button></li>
+                        <li className={this.state.checkbutton ? "hidden": ""}><button onClick={this.changeButtonState}>カルピス</button></li>
+                        <li className={this.state.checkbutton ? "hidden": ""}><button onClick={this.changeButtonState}>R1</button></li>
+                        <li className={this.state.checkbutton ? "hidden": ""}><button onClick={this.changeButtonState}>オレンジジュース</button></li>
                     </ul>
                 </div>
             </div>
