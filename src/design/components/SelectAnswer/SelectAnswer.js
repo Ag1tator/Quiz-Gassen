@@ -61,10 +61,18 @@ class Answer extends Component {
                         </div>
                     </div>
                     <ul className="quizList">
-                        <li className={this.state.checkbutton0 ? "hidden": ""}><button onClick={this.changeButton0State}>ソーダ</button></li>
-                        <li className={this.state.checkbutton1 ? "hidden": ""}><button onClick={this.changeButton1State}>カルピス</button></li>
-                        <li className={this.state.checkbutton2 ? "hidden": ""}><button onClick={this.changeButton2State}>R1</button></li>
-                        <li className={this.state.checkbutton3 ? "hidden": ""}><button onClick={this.changeButton3State}>オレンジジュース</button></li>
+                        <li className={this.state.checkbutton0 ? "hidden": ""}>
+                          <button onClick={this.changeButton0State}>{this.props.answer[0]}</button>
+                        </li>
+                        <li className={this.state.checkbutton1 ? "hidden": ""}>
+                          <button onClick={this.changeButton1State}>{this.props.answer[1]}</button>
+                        </li>
+                        <li className={this.state.checkbutton2 ? "hidden": ""}>
+                          <button onClick={this.changeButton2State}>{this.props.answer[2]}</button>
+                        </li>
+                        <li className={this.state.checkbutton3 ? "hidden": ""}>
+                          <button onClick={this.changeButton3State}>{this.props.answer[3]}</button>
+                        </li>
                     </ul>
                 </div>
             </div>
