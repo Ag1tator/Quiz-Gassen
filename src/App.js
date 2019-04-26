@@ -22,7 +22,6 @@ class App extends Component {
     user: null,
     roomName: null,
     questions: null,
-    selectedRoom: null
   }
   changeUserState = (value) => {
     this.setState({
@@ -33,19 +32,14 @@ class App extends Component {
     this.setState({
       roomName: value
     })
+    console.log(this.state)
   }
   changeQuestionState = value => {
     this.setState({
       questions: value
     })
-  }
-  changeSelectedRoomState = value => {
-    this.setState({
-      selectedRoom: value
-    })
     console.log(this.state)
   }
-
   showState = () => {
     console.log(this.state.user)
   }
@@ -83,7 +77,7 @@ class App extends Component {
           {this.state.user ? <Route path='/form' render={props => <FormApp changeUserState={this.changeUserState} uid={this.state.user.l} />} /> : <div></div>}
           <Route path='/design/components/Home/Home' component={NewHome} />
           <Route path='/createRoom' render={() => <CreateRoom user={this.state.user} />} />
-          <Route path='/selectRoom' render={() => <SelectRoom changeSelectedRoomNameState={this.changeSelectedRoomState} changeQuestionState={this.changeQuestionState} />} />
+          <Route path='/selectRoom' render={() => <SelectRoom changeSelectedRoomNameState={this.changeRoomNameState} changeQuestionState={this.changeQuestionState} />} />
           <Route path='/design/components/Room/Room' component={Room} />
           <Route path='/design/components/SelectResolution/SelectResolution' component={SelectResolution} />
           <Route path='/design/components/Loading/Loading' component={Loading} />
