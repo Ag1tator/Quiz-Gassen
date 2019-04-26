@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { firebase, firestore } from './firebase'
 
+import Home from './design/components/Home/Home'
+
 class Login extends Component {
 
   constructor(props) {
@@ -46,11 +48,18 @@ class Login extends Component {
     firebase.auth().signInWithRedirect(provider)
   }
 
+  logout() {
+    firebase.auth().signOut()
+  }
 
   render() {
     return (
       <div className="Login">
-        {this.state.user ? <button onClick={this.logout}>Google Logout</button> : <button onClick={this.login}>Google Login</button>}
+        <Home
+          user={this.state.user}
+          login={this.login}
+          logout={this.logout}
+        />
       </div>
     )
   }

@@ -8,7 +8,10 @@ class Home extends Component {
             <div className="fullScreen">
                 <div className="loginForm">
                     <h1>Title</h1>
-                    <button className="primaryButton">ログイン</button>
+                    {this.props.user
+                      ? <button onClick={this.props.logout} className="primaryButton">Google Logout</button>
+                      : <button onClick={this.props.login} className="primaryButton">Google Login</button>
+                    }
                 </div>
             </div>
         )
