@@ -28,7 +28,7 @@ class App extends Component {
         answerNum: 1,
         body: "この車は？",
         description: "スイフトスポーツです。",
-        imageURL:"https://firebasestorage.googleapis.com/v0/b/ca-hackathon-f0cb4.appspot.com/o/quiz%2F20190426155650?alt=media&token=3a900160-ed50-456f-b1b1-11d98079829a"
+        imageURL:"https://firebasestorage.googleapis.com/v0/b/ca-hackathon-f0cb4.appspot.com/o/quiz%2F20190425171731?alt=media&token=269d1cbb-3c42-451b-9ab7-f21019795541"
       },
       {
         answer:[
@@ -91,7 +91,7 @@ class App extends Component {
           <Route path='/createRoom' render={() => <CreateRoom user={this.state.user} />} />
 
           <Route path='/design/components/Room/Room' component={Room} />
-          <Route path='/design/components/SelectResolution/SelectResolution' render={props => <SelectResolution quiz={this.state.quiz} />} />
+          <Route path='/design/components/SelectResolution/SelectResolution' render={props => <SelectResolution quiz={this.state.quiz[0].body} />} />
           <Route path='/design/components/Loading/Loading' component={Loading} />
           <Route path='/design/components/Image/Image' render={props => <Image image={this.state.quiz[0].imageURL}/>} />
           <Route path='/design/components/SelectAnswer/SelectAnswer' render={props => <SelectAnswer answer={this.state.quiz[0].answer}/>} />
