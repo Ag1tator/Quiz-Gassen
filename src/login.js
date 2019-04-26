@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { firebase, firestore } from './firebase'
 
+import Home from './design/components/Home/Home'
+
 class Login extends Component {
 
   constructor(props) {
@@ -50,6 +52,11 @@ class Login extends Component {
   render() {
     return (
       <div className="Login">
+        <Home
+          user={this.state.user}
+          login={this.login}
+          logout={this.logout}
+        />
         {this.state.user ? <button onClick={this.logout}>Google Logout</button> : <button onClick={this.login}>Google Login</button>}
       </div>
     )
