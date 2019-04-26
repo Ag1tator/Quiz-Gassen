@@ -57,7 +57,6 @@ class Login extends Component {
           login={this.login}
           logout={this.logout}
         />
-        {this.state.user ? <button onClick={this.logout}>Google Logout</button> : <button onClick={this.login}>Google Login</button>}
       </div>
     )
   }
