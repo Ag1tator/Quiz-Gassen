@@ -43,12 +43,19 @@ class App extends Component {
         imageURL:"https://firebasestorage.googleapis.com/v0/b/ca-hackathon-f0cb4.appspot.com/o/quiz%2F20190426155650?alt=media&token=3a900160-ed50-456f-b1b1-11d98079829a"
       }
     ],
-    roomName: "ささもと"
+    roomName: "ささもと",
+    currentQuizNum: 0
   }
 
   changeUserState = (value) => {
     this.setState({
       user: value
+    })
+  }
+
+  changeQuizNum = () => {
+    this.setState({
+      currentQuizNum: 1
     })
   }
 
