@@ -3,6 +3,7 @@ $primary-button: #179DE9;
 $hover-primary-button: #44BCFF;
 $quiz-button: #33A38F;
 $hover-quiz-button: #3DBCA5;
+$answer: #FF6C6C;
 
 .fullScreen {
     width: 100vw;
@@ -221,6 +222,50 @@ $hover-quiz-button: #3DBCA5;
 
 .none {
     display: none;
+}
+
+.answerRapper {
+    width: 100vw;
+    height: 50vh;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+
+    .answer {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        img {
+            display: inline-block;
+            width: 80vw;
+            height: 80vw;
+            max-width: 250px;
+            max-height: 250px;
+            object-fit: cover;
+            border: solid $primary-text;
+        }
+    
+        .rightOrWrong {
+            color: $answer;
+            font-weight: 700;
+            font-size: 32px;
+        }
+    }
+}
+
+.commentary {
+    width: 100vw;
+    height: 60vh;
+    overflow: hidden;
+    text-align: center;
+
+    .description {
+        text-align: left;
+        padding: 8px 24px 8px 24px;
+        font-size: 18px;
+    }
 }
 
 .loader {
