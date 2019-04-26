@@ -16,16 +16,15 @@ class Room extends Component {
         })
         this.setState({ roomList: list })
     }
+
     getQuizList = async (list) => {
         let data = []
         await Promise.all(list.map(async (name, i) => {
-            console.log(name)
             firestore.collection('quiz').doc(name).get().then(snap => {
                 data.push(snap.data())
             })
         }
         ))
-        console.log(data)
         return data
     }
 
@@ -34,7 +33,6 @@ class Room extends Component {
         const className = e.target.className.split('-')
         const roomData = this.state.data[className[1]]
         this.getQuizList(roomData.quiz).then(quizList => {
-            console.log(quizList)
             this.props.quizHandlerChange(quizList)
             this.props.selectedRoomHandlerChange(roomData.roomName)
         })
@@ -50,7 +48,6 @@ class Room extends Component {
                 data.push(doc.data())
                 list.push(<li><button className={className} onClick={this.onClick}>{doc.data().roomName}</button></li>)
             })
-            console.log(data)
             this.setState({ data: data, list: list })
         }
 
@@ -66,7 +63,6 @@ class Room extends Component {
                 </header>
                 <ul className="roomList">
                     {this.state.list}
-
                 </ul>
             </div>
         )
