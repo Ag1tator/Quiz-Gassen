@@ -48,6 +48,7 @@ const uploadImage = (filename, image) => {
 
 const getQuestions = () => {
   return new Promise((resolve, reject) => {
+
     const collectionRef = firestore.collection('quiz')
     collectionRef.get().then(snap => {
       console.log(snap)
@@ -98,6 +99,8 @@ const uploadQuiz = (quiz) => {
 */
 const createNewRoom = (roomData) => {
   return new Promise((resolve, reject) => {
+    const now = getCurrentTime();
+    roomData["createdAt"] = now
     firestore
       .collection('room')
       .doc(roomData.roomName)
