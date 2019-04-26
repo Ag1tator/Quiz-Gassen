@@ -16,9 +16,6 @@ class Home extends Component {
                       ? <button onClick={this.props.logout} className="primaryButton">Google Logout</button>
                       : <button onClick={this.props.login} className="primaryButton">Google Login</button>
                     }
-                    {
-                      //<button className="primaryButton">ログイン</button>
-                    }
                 </div>
             </div>
         )
