@@ -12,6 +12,7 @@ import Transition from './transition'
 import NewHome from './design/components/Home/Home'
 import Room from './design/components/Room/Room'
 import SelectResolution from './design/components/SelectResolution/SelectResolution'
+import Loading from './design/components/Loading/Loading'
 
 import './App.scss'
 
@@ -45,6 +46,7 @@ class App extends Component {
             <li><Link to='/design/components/Home/Home'>NewHome</Link></li>
             <li><Link to='/design/components/Room/Room'>Room</Link></li>
             <li><Link to='/design/components/SelectResolution/SelectResolution'>SelectResolution</Link></li>
+            <li><Link to='/design/components/Loading/Loading'>Loading</Link></li>
 
           </ul>
           <hr />
@@ -57,6 +59,7 @@ class App extends Component {
           <Route path='/design/components/Home/Home' component={NewHome} />
           <Route path='/design/components/Room/Room' component={Room} />
           <Route path='/design/components/SelectResolution/SelectResolution' component={SelectResolution} />
+          <Route path='/design/components/Loading/Loading' component={Loading} />
 
         </div>
       </BrowserRouter>
