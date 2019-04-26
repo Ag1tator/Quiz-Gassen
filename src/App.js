@@ -39,7 +39,8 @@ class App extends Component {
         ],
         answerNum: 1,
         body: "平成10年って、西暦何年？",
-        description: "1998年です。",imageURL:"https://firebasestorage.googleapis.com/v0/b/ca-hackathon-f0cb4.appspot.com/o/quiz%2F20190426155650?alt=media&token=3a900160-ed50-456f-b1b1-11d98079829a"
+        description: "1998年です。",
+        imageURL:"https://firebasestorage.googleapis.com/v0/b/ca-hackathon-f0cb4.appspot.com/o/quiz%2F20190426155650?alt=media&token=3a900160-ed50-456f-b1b1-11d98079829a"
       }
     ],
     roomName: "ささもと"
@@ -92,8 +93,8 @@ class App extends Component {
           <Route path='/design/components/Room/Room' component={Room} />
           <Route path='/design/components/SelectResolution/SelectResolution' render={props => <SelectResolution quiz={this.state.quiz} />} />
           <Route path='/design/components/Loading/Loading' component={Loading} />
-          <Route path='/design/components/Image/Image' component={Image} />
-          <Route path='/design/components/SelectAnswer/SelectAnswer' component={SelectAnswer} />
+          <Route path='/design/components/Image/Image' render={props => <Image image={this.state.quiz[0].imageURL}/>} />
+          <Route path='/design/components/SelectAnswer/SelectAnswer' render={props => <SelectAnswer answer={this.state.quiz[0].answer}/>} />
         </div>
       </BrowserRouter>
     )
