@@ -45,25 +45,6 @@ const uploadImage = (filename, image) => {
   })
 }
 
-const uploadQuiz = (quiz) => {
-  console.log(quiz)
-  const now = getCurrentTime();
-  const arr = [];
-  arr.push(quiz.answer1); arr.push(quiz.answer2); arr.push(quiz.answer3); arr.push(quiz.answer4);
-  console.log(arr)
-  uploadImage(now, quiz.image).then(imageURL => {
-    console.log("quiz", quiz)
-    firestore.collection('quiz').doc(now).set({
-      age: quiz.age,
-      answer: arr,
-      answerNum: quiz.answerNum - 1,
-      source: quiz.body,
-      description: quiz.description,
-      imageSrc: imageURL,
-      writer: quiz.writer
-    })
-  });
-}
 
 const getQuestions = () => {
   return new Promise((resolve, reject) => {
@@ -88,12 +69,57 @@ const getQuestions = () => {
   })
 }
 
+const uploadQuiz = (quiz) => {
+  console.log(quiz)
+  const now = getCurrentTime();
+  const arr = [];
+  arr.push(quiz.answer1); arr.push(quiz.answer2); arr.push(quiz.answer3); arr.push(quiz.answer4);
+  console.log(arr)
+  uploadImage(now, quiz.image).then(imageURL => {
+    console.log("quiz", quiz)
+    firestore.collection('quiz').doc(now).set({
+      age: quiz.age,
+      answer: arr,
+      answerNum: quiz.answerNum - 1,
+      source: quiz.body,
+      description: quiz.description,
+      imageSrc: imageURL,
+      writer: quiz.writer
+    })
+  });
+}
+
+/*
+{
+    quiz: [""],
+    roomName: "",
+    description: ""
+}
+*/
+const createNewRoom = (roomData) => {
+  return new Promise((resolve, reject) => {
+    firestore
+      .collection('room')
+      .doc(roomData.roomName)
+      .set(
+        roomData
+      ).then(() => {
+        resolve(roomData);
+        return;
+      }).catch(err => {
+        reject(err);
+        console.log(err)
+        return;
+      })
+  })
+}
 export {
   firebase,
   firestore,
   uploadQuiz,
   getQuestions,
-  uploadImage
+  uploadImage,
+  createNewRoom
 }
 
 const getCurrentTime = () => {
