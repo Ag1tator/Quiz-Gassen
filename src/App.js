@@ -18,8 +18,33 @@ import './App.scss'
 
 class App extends Component {
   state = {
-    user: null
+    quiz: [
+      {
+        answer:[
+          "スイフト",
+          "プリウス",
+          "アクア",
+          "スイフトスポーツ"],
+        answerNum: 1,
+        body: "この車は？",
+        description: "スイフトスポーツです。",
+        imageURL:"https://firebasestorage.googleapis.com/v0/b/ca-hackathon-f0cb4.appspot.com/o/quiz%2F20190426155650?alt=media&token=3a900160-ed50-456f-b1b1-11d98079829a"
+      },
+      {
+        answer:[
+          "1998",
+          "1999",
+          "2000",
+          "2001",
+        ],
+        answerNum: 1,
+        body: "平成10年って、西暦何年？",
+        description: "1998年です。",imageURL:"https://firebasestorage.googleapis.com/v0/b/ca-hackathon-f0cb4.appspot.com/o/quiz%2F20190426155650?alt=media&token=3a900160-ed50-456f-b1b1-11d98079829a"
+      }
+    ],
+    roomName: "ささもと"
   }
+
   changeUserState = (value) => {
     this.setState({
       user: value
@@ -65,7 +90,7 @@ class App extends Component {
           <Route path='/createRoom' render={() => <CreateRoom user={this.state.user} />} />
 
           <Route path='/design/components/Room/Room' component={Room} />
-          <Route path='/design/components/SelectResolution/SelectResolution' component={SelectResolution} />
+          <Route path='/design/components/SelectResolution/SelectResolution' render={props => <SelectResolution quiz={this.state.quiz} />} />
           <Route path='/design/components/Loading/Loading' component={Loading} />
           <Route path='/design/components/Image/Image' component={Image} />
           <Route path='/design/components/SelectAnswer/SelectAnswer' component={SelectAnswer} />
