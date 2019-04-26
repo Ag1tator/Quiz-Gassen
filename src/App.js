@@ -10,6 +10,7 @@ import QuestionList from './questionList'
 import Transition from './transition'
 
 import NewHome from './design/components/Home/Home'
+import Room from './design/components/Room/Room'
 
 import './App.scss'
 
@@ -41,6 +42,7 @@ class App extends Component {
             <li><Link to='/quizlist'>Quiz list</Link></li>
             <li><Link to='/transition'>transition</Link></li>
             <li><Link to='/design/components/Home/Home'>NewHome</Link></li>
+            <li><Link to='/design/components/Room/Room'>Room</Link></li>
 
           </ul>
           <hr />
@@ -51,6 +53,7 @@ class App extends Component {
           <Route path='/transition' render={() => <Transition />} />
           {this.state.user ? <Route path='/form' render={props => <FormApp changeUserState={this.changeUserState} uid={this.state.user.l} />} /> : <div></div>}
           <Route path='/design/components/Home/Home' component={NewHome} />
+          <Route path='/design/components/Room/Room' component={Room} />
 
         </div>
       </BrowserRouter>
