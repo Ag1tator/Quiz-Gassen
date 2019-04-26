@@ -1,5 +1,5 @@
 import React from "react";
-
+import { createNewRoom } from './firebase'
 class CreateRoom extends React.Component {
   /*参考: https://itnext.io/building-a-dynamic-controlled-form-in-react-together-794a44ee552c */
   state = {
@@ -14,10 +14,24 @@ class CreateRoom extends React.Component {
       quiz: quiz
     }));
   }
+  preventDefault = (e) => {
+    e.preventDefault();
+  }
   handleSubmit = (e) => {
     e.preventDefault();
+    const newRoom = {
+      roomName: this.state.roomName,
+      description: this.state.description,
+      quiz: this.state.quiz
+    }
+    createNewRoom(newRoom).then(
+      () => alert("新しい部屋を作りました！")
+    ).catch(err => {
+      alert("部屋の作成に失敗しました。", err)
+    });
     console.log(this.state)
   }
+
   handleChange = (e) => {
     if ("quiz" === e.target.className) {
       let quiz = [...this.state.quiz]
@@ -28,10 +42,11 @@ class CreateRoom extends React.Component {
       this.setState({ [e.target.name]: e.target.value })
     }
   }
+
   render() {
     let { quiz } = this.state
     return (
-      <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
+      <form onSubmit={this.preventDefault} onChange={this.handleChange}>
         <label htmlFor="roomName">Room Name</label>
         <input type="text" name="roomName" id="roomName" value={this.state.owner} className="roomName" />
         <label htmlFor="description">Description</label>
@@ -56,7 +71,7 @@ class CreateRoom extends React.Component {
             )
           })
         }
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" onClick={this.handleSubmit} />
       </form>
     )
   }
