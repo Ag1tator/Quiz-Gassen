@@ -48,6 +48,9 @@ class Login extends Component {
     firebase.auth().signInWithRedirect(provider)
   }
 
+  logout() {
+    firebase.auth().signOut()
+  }
 
   render() {
     return (
