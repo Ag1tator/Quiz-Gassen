@@ -10,7 +10,7 @@ class Quiz extends Component {
                     <div className="quizTopRapper">
                         <div className="quizTop">
                             <h1>問題</h1>
-                            <h2>平成3年</h2>
+                            <h2>{this.props.quiz}</h2>
                         </div>
                     </div>
                     <ul className="quizList">
