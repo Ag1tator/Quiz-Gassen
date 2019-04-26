@@ -38,12 +38,12 @@ class App extends Component {
     this.setState({
       questions: value
     })
-    console.log(this.state)
   }
   changeSelectedRoomState = value => {
     this.setState({
       selectedRoom: value
     })
+    console.log(this.state)
   }
 
   showState = () => {
