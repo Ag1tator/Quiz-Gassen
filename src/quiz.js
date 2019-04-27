@@ -32,10 +32,13 @@ class Quiz extends React.Component {
       answer: number
     })
   }
+
+
   componentDidMount = () => {
     firestore.collection('room').doc(this.state.roomName).onSnapshot(snap => {
       console.log(snap.data())
       const data = snap.data()
+      this.setState({ currentQuizNum: data.currentQuizNum })
       if (data.isQuizFinish) {
         this.setState({ render: <div>Finish</div> })
       } else if (data.isSelectResolution) {
@@ -45,9 +48,7 @@ class Quiz extends React.Component {
       } else if (data.isQuizStart) {
         this.setState({ render: <SelectAnswer image={this.state.quiz[this.state.currentQuizNum].imageURL} answer={this.state.quiz[this.state.currentQuizNum].answer} roomName={this.state.roomName} userData={this.state.userData} submitAnswer={this.submitAnswer} /> })
       } else if (data.isFinish) {
-        const nextQuizNum = this.state.currentQuizNum + 1;
         this.setState({
-          currentQuizNum: nextQuizNum,
           render: <Loading />
         })
       }
