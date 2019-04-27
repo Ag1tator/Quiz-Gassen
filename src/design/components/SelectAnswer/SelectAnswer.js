@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { firestore } from '../../../firebase'
 
 import './../style.scss'
 
