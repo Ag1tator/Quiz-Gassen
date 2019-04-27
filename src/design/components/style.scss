@@ -4,6 +4,9 @@ $hover-primary-button: #44BCFF;
 $quiz-button: #33A38F;
 $hover-quiz-button: #3DBCA5;
 $answer: #FF6C6C;
+$gold: #EBCE38;
+$silver: #A2A2A2;
+$bronze: #E19D5E;
 
 .fullScreen {
     width: 100vw;
@@ -266,6 +269,83 @@ $answer: #FF6C6C;
         padding: 8px 24px 8px 24px;
         font-size: 18px;
     }
+}
+
+.resultContainer {
+    overflow: hidden;
+    text-align: center;
+    color: $primary-text;
+    width: 80vw;
+    margin: 0 auto;
+
+    h2 {
+        font-size: 32px;
+        font-weight: 400;
+        
+        .ranking {
+            font-weight: 700;
+        }
+    }
+
+    .top3 {
+        padding: 0;
+
+        li {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            color: white;
+            background-color: $primary-button;
+            padding: 8px 8px 8px 12px;
+            margin: 8px 0 8px 0;
+            border-radius: 60px;
+            height: 60px;
+            
+            img {
+                width: 52px;
+                height: 52px;
+                display: inline-block;
+                border-radius: 50%;
+            }
+
+            div {
+                font-size: 22px;
+                line-height: 55px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+    .otherRanking {
+        text-align: left;
+        
+        margin: 16px 24px 16px 24px;
+    }
+}
+
+.gold {
+    color: $gold;
+}
+
+.silver {
+    color: $silver;
+}
+
+.bronze {
+    color: $bronze;
+}
+
+.borderGold {
+    border: solid 4px $gold;
+}
+
+.borderSilver {
+    border: solid 4px $silver;
+}
+
+.borderBronze {
+    border: solid 4px $bronze;
 }
 
 .loader {
