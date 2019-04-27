@@ -16,10 +16,10 @@ class Quiz extends Component {
                         </div>
                     </div>
                     <ul className="quizList">
-                        <li><Link to='./../Loading/Loading'>めっちゃ小さい</Link></li>
-                        <li><Link to='../Loading/Loading'>小さい</Link></li>
-                        <li><Link to='../Loading/Loading'>ちょっと小さい</Link></li>
-                        <li><Link to='../Loading/Loading'>ふつう</Link></li>
+                        <li><Link to='/design/components/Loading/Loading'>めっちゃ小さい</Link></li>
+                        <li><Link to='/design/components/Loading/Loading'>小さい</Link></li>
+                        <li><Link to='/design/components/Loading/Loading'>ちょっと小さい</Link></li>
+                        <li><Link to='/design/components/Loading/Loading'>ふつう</Link></li>
                     </ul>
                 </div>
             </div>
