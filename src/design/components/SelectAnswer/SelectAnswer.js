@@ -12,6 +12,7 @@ class Answer extends Component {
     checkbutton3: false,
   }
 
+
   changeButton0State = () => {
     this.setState({
       changeScreen: true,
@@ -20,7 +21,7 @@ class Answer extends Component {
       checkbutton3: true,
     })
     console.log("push button 0")
-
+    this.props.submitAnswer(0)
   }
 
   changeButton1State = () => {
@@ -31,6 +32,7 @@ class Answer extends Component {
       checkbutton3: true,
     })
     console.log("push button 1")
+    this.props.submitAnswer(1)
 
   }
 
@@ -42,6 +44,8 @@ class Answer extends Component {
       checkbutton3: true,
     })
     console.log("push button 2")
+    this.props.submitAnswer(2)
+
 
   }
 
@@ -53,11 +57,11 @@ class Answer extends Component {
       checkbutton2: true,
     })
     console.log("push button 3")
-  }
-
-  submitAnswer = (number) => {
+    this.props.submitAnswer(3)
 
   }
+
+
   render() {
     console.log(this.props)
     return (
