@@ -61,7 +61,6 @@ class App extends Component {
             {this.state.user ? <div><li><Link to='/form'>New Quiz</Link></li>
               <li><Link to='/createRoom'>CreateRoom</Link></li></div> : <div></div>}
             <li><Link to='/selectRoom'>SelectRoom</Link></li>
-            <li><Link to='/design/components/Room/Room'>Room</Link></li>
             <li><Link to='/design/components/SelectResolution/SelectResolution'>SelectResolution</Link></li>
             <li><Link to='/design/components/Loading/Loading'>Loading</Link></li>
             <li><Link to='/design/components/Image/Image'>Image</Link></li>
@@ -78,7 +77,6 @@ class App extends Component {
           <Route path='/design/components/Home/Home' component={NewHome} />
           <Route path='/createRoom' render={() => <CreateRoom user={this.state.user} />} />
           <Route path='/selectRoom' render={() => <SelectRoom changeSelectedRoomNameState={this.changeRoomNameState} changeQuestionState={this.changeQuestionState} />} />
-          <Route path='/design/components/Room/Room' component={Room} />
           <Route path='/design/components/SelectResolution/SelectResolution' component={SelectResolution} />
           <Route path='/design/components/Loading/Loading' component={Loading} />
           <Route path='/design/components/Image/Image' component={Image} />
