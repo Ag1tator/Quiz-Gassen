@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { Link } from 'react-router-dom'
+
 import './../style.scss'
 
 class Quiz extends Component {
@@ -14,10 +16,10 @@ class Quiz extends Component {
                         </div>
                     </div>
                     <ul className="quizList">
-                        <li><button>めっちゃ小さい</button></li>
-                        <li><button>小さい</button></li>
-                        <li><button>ちょっと小さい</button></li>
-                        <li><button>ふつう</button></li>
+                        <li><Link to='./../Loading/Loading'>めっちゃ小さい</Link></li>
+                        <li><Link to='../Loading/Loading'>小さい</Link></li>
+                        <li><Link to='../Loading/Loading'>ちょっと小さい</Link></li>
+                        <li><Link to='../Loading/Loading'>ふつう</Link></li>
                     </ul>
                 </div>
             </div>
