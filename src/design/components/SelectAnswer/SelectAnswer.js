@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { firestore } from '../../../firebase'
 
 import './../style.scss'
 
@@ -18,6 +19,8 @@ class Answer extends Component {
       checkbutton2: true,
       checkbutton3: true,
     })
+    console.log("push button 0")
+
   }
 
   changeButton1State = () => {
@@ -27,6 +30,8 @@ class Answer extends Component {
       checkbutton2: true,
       checkbutton3: true,
     })
+    console.log("push button 1")
+
   }
 
   changeButton2State = () => {
@@ -36,6 +41,8 @@ class Answer extends Component {
       checkbutton1: true,
       checkbutton3: true,
     })
+    console.log("push button 2")
+
   }
 
   changeButton3State = () => {
@@ -45,39 +52,44 @@ class Answer extends Component {
       checkbutton1: true,
       checkbutton2: true,
     })
+    console.log("push button 3")
   }
 
-    render() {
-        return (
-            <div className={this.state.changeScreen ? "fullScreen backGroundGray": "fullScreen"}>
-                <div className="quizForm">
-                    <div className="quizTopRapper">
-                        <div className="quizTop">
-                            <h1 className={this.state.changeScreen ? "none": ""}>自分の答えを<br />選択！</h1>
-                            <div className={this.state.changeScreen ? "loaderRapper": "loaderRapper none"}>
-                                <h1>正解発表待ち</h1>
-                                <div className="loader">Loading...</div>
-                            </div>
-                        </div>
-                    </div>
-                    <ul className="quizList">
-                        <li className={this.state.checkbutton0 ? "hidden": ""}>
-                          <button onClick={this.changeButton0State}>{this.props.answer[0]}</button>
-                        </li>
-                        <li className={this.state.checkbutton1 ? "hidden": ""}>
-                          <button onClick={this.changeButton1State}>{this.props.answer[1]}</button>
-                        </li>
-                        <li className={this.state.checkbutton2 ? "hidden": ""}>
-                          <button onClick={this.changeButton2State}>{this.props.answer[2]}</button>
-                        </li>
-                        <li className={this.state.checkbutton3 ? "hidden": ""}>
-                          <button onClick={this.changeButton3State}>{this.props.answer[3]}</button>
-                        </li>
-                    </ul>
-                </div>
+  submitAnswer = (number) => {
+
+  }
+  render() {
+    console.log(this.props)
+    return (
+      <div className={this.state.changeScreen ? "fullScreen backGroundGray" : "fullScreen"}>
+        <div className="quizForm">
+          <div className="quizTopRapper">
+            <div className="quizTop">
+              <h1 className={this.state.changeScreen ? "none" : ""}>自分の答えを<br />選択！</h1>
+              <div className={this.state.changeScreen ? "loaderRapper" : "loaderRapper none"}>
+                <h1>正解発表待ち</h1>
+                <div className="loader">Loading...</div>
+              </div>
             </div>
-        )
-    }
+          </div>
+          <ul className="quizList">
+            <li className={this.state.checkbutton0 ? "hidden" : ""}>
+              <button onClick={this.changeButton0State}>{this.props.answer[0]}</button>
+            </li>
+            <li className={this.state.checkbutton1 ? "hidden" : ""}>
+              <button onClick={this.changeButton1State}>{this.props.answer[1]}</button>
+            </li>
+            <li className={this.state.checkbutton2 ? "hidden" : ""}>
+              <button onClick={this.changeButton2State}>{this.props.answer[2]}</button>
+            </li>
+            <li className={this.state.checkbutton3 ? "hidden" : ""}>
+              <button onClick={this.changeButton3State}>{this.props.answer[3]}</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default Answer
