@@ -45,12 +45,12 @@ class Quiz extends React.Component {
         this.setState({ render: <SelectResolution /> }) //解像度を選択したら<Loading />にとばす
       } else if (data.isWaiting) {
         this.setState({ render: <Loading /> })
+      } else if (data.isShowImage) {
+        this.setState({ render: <Image image={this.state.quiz[this.state.currentQuizNum].imageURL} /> })
       } else if (data.isQuizStart) {
-        this.setState({ render: <SelectAnswer image={this.state.quiz[this.state.currentQuizNum].imageURL} answer={this.state.quiz[this.state.currentQuizNum].answer} roomName={this.state.roomName} userData={this.state.userData} submitAnswer={this.submitAnswer} /> })
+        this.setState({ render: <SelectAnswer answer={this.state.quiz[this.state.currentQuizNum].answer} roomName={this.state.roomName} userData={this.state.userData} submitAnswer={this.submitAnswer} /> })
       } else if (data.isFinish) {
-        this.setState({
-          render: <Loading />
-        })
+        this.setState({ render: <Loading /> })
       }
       console.log(this.state)
     })
