@@ -98,7 +98,7 @@ class App extends Component {
           {this.state.user ? <Route path='/form' render={props => <FormApp changeUserState={this.changeUserState} uid={this.state.user.l} />} /> : <div></div>}
           <Route path='/design/components/Home/Home' component={NewHome} />
           <Route path='/createRoom' render={() => <CreateRoom user={this.state.user} />} />
-          <Route path='/quiz' render={() => <Quiz quiz={this.state.quiz} roomName={this.state.roomName} />} />
+          <Route path='/quiz' render={() => <Quiz quiz={this.state.quiz} roomName={this.state.roomName} userData={this.state.user} />} />
           <Route path='/design/components/Room/Room' component={Room} />
           <Route path='/design/components/SelectResolution/SelectResolution' render={props => <SelectResolution quiz={this.state.quiz[0].body} />} />
           <Route path='/design/components/Loading/Loading' component={Loading} />
