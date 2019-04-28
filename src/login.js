@@ -29,22 +29,23 @@ class Login extends Component {
     firebase.auth().onAuthStateChanged(user => {
       this.props.changeUserState(user)
       if (user) {
+        console.log(user)
         this.setState({ user: user })
-        const data = this.getUserData(user.l)
+        const data = this.getUserData(user.displayName)
         if (!data) { //データがない時
           const userData = {
             displayName: user.displayName,
             photoURL: user.photoURL,
             createdAt: Date.now()
           }
-          this.createNewUser(user.l, userData)
+          this.createNewUser(user.displayName, userData)
         }
       }
     })
   }
 
   login() {
-    const provider = new firebase.auth.GoogleAuthProvider()
+    const provider = new firebase.auth.TwitterAuthProvider();
     firebase.auth().signInWithRedirect(provider)
   }
 
