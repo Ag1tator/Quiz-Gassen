@@ -29,9 +29,16 @@ class Quiz extends React.Component {
 
   submitAnswer = (number) => {
     console.log(number, this.state.userData)
+    let isCollect = false;
+    if (this.state.quiz[this.state.currentQuizNum].answerNum === number) {
+      isCollect = true
+    }
     firestore.collection('room').doc(this.state.roomName).collection(this.state.userData.displayName).doc('quiz' + this.state.currentQuizNum).set({
-      answer: number
+      answer: number,
+      isCollect: isCollect
     })
+    this.setState({ isCollect: isCollect })
+    console.log(this.state)
   }
   selectResolution = (number) => {
     this.setState({
@@ -53,6 +60,12 @@ class Quiz extends React.Component {
         this.setState({ render: <div>Finish</div> })
       } else if (data.isSelectResolution) {
         this.setState({ render: <SelectResolution selectResolution={this.selectResolution} /> }) //解像度を選択したら<Loading />にとばす
+      } else if (data.isCheckAnswer) {
+        if (this.state.isCollect) {
+          this.setState({ render: <div>Collect!</div> })
+        } else {
+          this.setState({ render: <div>Incollect!</div> })
+        }
       } else if (data.isWaiting) {
         this.setState({ render: <Loading /> })
       } else if (data.isShowImage) {
