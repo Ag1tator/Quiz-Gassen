@@ -22,7 +22,7 @@ class Quiz extends React.Component {
       roomName: this.props.roomName,
       quiz: this.props.quiz,
       totalQuizCount: totalQuizCount,
-      currentQuizNum: 0
+      currentQuizNum: 0,
     })
   }
 
@@ -38,6 +38,10 @@ class Quiz extends React.Component {
     })
   }
 
+  changeSelectAnswer = () => {
+    this.setState({ render: <SelectAnswer answer={this.state.quiz[this.state.currentQuizNum].answer} roomName={this.state.roomName} userData={this.state.userData} submitAnswer={this.submitAnswer} /> })
+  }
+
 
   componentDidMount = () => {
     firestore.collection('room').doc(this.state.roomName).onSnapshot(snap => {
@@ -51,7 +55,7 @@ class Quiz extends React.Component {
       } else if (data.isWaiting) {
         this.setState({ render: <Loading /> })
       } else if (data.isShowImage) {
-        this.setState({ render: <Image image={this.state.quiz[this.state.currentQuizNum].imageURL} /> })
+        this.setState({ render: <Image image={this.state.quiz[this.state.currentQuizNum].imageURL} changeSelectAnswer={this.changeSelectAnswer}/> })
       } else if (data.isQuizStart) {
         this.setState({ render: <SelectAnswer answer={this.state.quiz[this.state.currentQuizNum].answer} roomName={this.state.roomName} userData={this.state.userData} submitAnswer={this.submitAnswer} /> })
       } else if (data.isFinish) {
