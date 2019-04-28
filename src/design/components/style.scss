@@ -416,3 +416,71 @@ $bronze: #E19D5E;
     box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5), -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
     }
 }
+
+.adminHeader {
+    width: 100vw;
+    height: 80px;
+    background-color: $primary-button;
+
+    nav {
+        ul {
+            margin: 0;
+            padding: 0 16px;
+
+            li {
+                list-style: none;
+                padding: 0;
+                display: inline-block;
+
+                button {
+                    outline: none;
+                    border-style: none;
+                    text-decoration: none;
+                    background-color: transparent;
+                    font-size: 24px;
+                    height: 80px;
+                    color: white;
+
+                    &:hover {
+                        background-color: #44BCFF;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.container {
+    width: 90%;
+    max-width: 760px;
+    margin: 0 auto;
+    color: $primary-text;
+
+    h1 {
+        border-bottom: solid 4px $primary-text;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            button {
+                outline: none;
+                border-style: none;
+                text-decoration: none;
+                background-color: transparent;
+                font-size: 24px;
+                height: 80px;
+                color: $primary-text;
+                width: 100%;
+                text-align: left;
+                border-bottom: solid 1px #D7D7D7;
+
+                &:hover {
+                    background-color: #D7D7D7;
+                }
+            }
+        }
+    }
+}
