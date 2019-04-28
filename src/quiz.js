@@ -16,6 +16,7 @@ class Quiz extends React.Component {
     }
   }
   componentWillMount = () => {
+    console.log(this.props)
     const totalQuizCount = this.props.quiz.length
     this.setState({
       userData: this.props.userData,
@@ -55,7 +56,7 @@ class Quiz extends React.Component {
       } else if (data.isWaiting) {
         this.setState({ render: <Loading /> })
       } else if (data.isShowImage) {
-        this.setState({ render: <Image image={this.state.quiz[this.state.currentQuizNum].imageURL} changeSelectAnswer={this.changeSelectAnswer}/> })
+        this.setState({ render: <Image image={this.state.quiz[this.state.currentQuizNum].imageSrc} changeSelectAnswer={this.changeSelectAnswer} /> })
       } else if (data.isQuizStart) {
         this.setState({ render: <SelectAnswer answer={this.state.quiz[this.state.currentQuizNum].answer} roomName={this.state.roomName} userData={this.state.userData} submitAnswer={this.submitAnswer} /> })
       } else if (data.isFinish) {
