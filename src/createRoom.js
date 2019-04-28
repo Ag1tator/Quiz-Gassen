@@ -22,7 +22,13 @@ class CreateRoom extends React.Component {
     const newRoom = {
       roomName: this.state.roomName,
       description: this.state.description,
-      quiz: this.state.quiz
+      quiz: this.state.quiz,
+      currentQuizNum: 0,
+      isQuizFinish: false,
+      isSelectResolution: false,
+      isWaiting: false,
+      isQuizStart: false,
+      isFinish: false
     }
     createNewRoom(newRoom).then(
       () => alert("新しい部屋を作りました！")
