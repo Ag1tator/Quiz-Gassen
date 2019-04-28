@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import './../style.scss'
 
-class Answer extends Component {
+class SelectAnswer extends Component {
   state = {
     changeScreen: false,
     checkbutton0: false,
@@ -95,4 +95,4 @@ class Answer extends Component {
   }
 }
 
-export default Answer
+export default SelectAnswer
