@@ -32,6 +32,11 @@ class Quiz extends React.Component {
       answer: number
     })
   }
+  selectResolution = (number) => {
+    this.setState({
+      selectedResolution: number
+    })
+  }
 
 
   componentDidMount = () => {
@@ -42,7 +47,7 @@ class Quiz extends React.Component {
       if (data.isQuizFinish) {
         this.setState({ render: <div>Finish</div> })
       } else if (data.isSelectResolution) {
-        this.setState({ render: <SelectResolution /> }) //解像度を選択したら<Loading />にとばす
+        this.setState({ render: <SelectResolution selectResolution={this.selectResolution} /> }) //解像度を選択したら<Loading />にとばす
       } else if (data.isWaiting) {
         this.setState({ render: <Loading /> })
       } else if (data.isShowImage) {
