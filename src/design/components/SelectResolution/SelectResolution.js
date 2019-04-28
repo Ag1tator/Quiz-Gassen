@@ -62,7 +62,7 @@ class selectResolution extends Component {
     }
     render() {
         return (
-            <div className="fullScreen">
+            <div className={this.state.changeScreen ? "fullScreen backGroundGray" : "fullScreen"}>
                 <div className="quizForm">
                     <div className="quizTopRapper">
                         <div className="quizTop">
