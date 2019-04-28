@@ -7,7 +7,9 @@ class Image extends Component {
         return (
             <div className="fullScreen imageRapper">
                 <div className="imageBackground">
-                  <img alt="hogehoge" src={this.props.image}/> 
+                  <button onClick={() => this.props.changeSelectAnswer() }>
+                    <img alt="hogehoge" src={this.props.image}/>
+                  </button>
                 </div>
                 <footer><h1>わかったら<br />画面をタップ！</h1></footer>
             </div>
