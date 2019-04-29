@@ -12,7 +12,7 @@ class Quiz extends React.Component {
       quiz: null,
       totalQuizCount: null,
       currentQuizNum: null,
-      userData: null
+      userData: null,
     }
   }
   componentWillMount = () => {
@@ -35,7 +35,7 @@ class Quiz extends React.Component {
   }
   selectResolution = (number) => {
     this.setState({
-      selectedResolution: number
+      resolutionNum: number
     })
   }
 
@@ -56,7 +56,7 @@ class Quiz extends React.Component {
       } else if (data.isWaiting) {
         this.setState({ render: <Loading /> })
       } else if (data.isShowImage) {
-        this.setState({ render: <Image image={this.state.quiz[this.state.currentQuizNum].imageSrc} changeSelectAnswer={this.changeSelectAnswer} /> })
+        this.setState({ render: <Image image={this.state.quiz[this.state.currentQuizNum].imageSrc} resolutionNum={this.state.resolutionNum} changeSelectAnswer={this.changeSelectAnswer} /> })
       } else if (data.isQuizStart) {
         this.setState({ render: <SelectAnswer answer={this.state.quiz[this.state.currentQuizNum].answer} roomName={this.state.roomName} userData={this.state.userData} submitAnswer={this.submitAnswer} /> })
       } else if (data.isFinish) {
