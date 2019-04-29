@@ -12,11 +12,7 @@ class AdminRoom extends Component {
             roomName: null
         }
     }
-    chooseRoom = (e) => {
-        console.log(e)
-        //const className = e.target.className.split('-')
-        //const quizNum = this.state.data[className[1]]
-    }
+
     getQuizList = async (list) => {
         let data = []
         await Promise.all(list.map(async (name, i) => {

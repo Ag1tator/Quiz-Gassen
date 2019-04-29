@@ -28,7 +28,8 @@ class CreateRoom extends React.Component {
       isSelectResolution: false,
       isWaiting: false,
       isQuizStart: false,
-      isFinish: false
+      isFinish: false,
+      createUser: this.props.user.displayName
     }
     createNewRoom(newRoom).then(
       () => alert("新しい部屋を作りました！")
