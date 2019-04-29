@@ -17,6 +17,7 @@ class Image extends Component {
         case 1: speed = 90; time = 2; break; //大体16Kbps
         case 2: speed = 360; time = 2; break; //大体32Kbps
         case 3: speed = 720; radius = 1; break; //大体64Kbps
+        default: speed = 360; time = 2;
       }
 
       const { canvas } = this
