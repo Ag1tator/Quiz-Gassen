@@ -11,13 +11,15 @@ class Quiz extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      roomName: null,
-      quiz: null,
-      totalQuizCount: null,
-      currentQuizNum: null,
-      userData: null,
+      userData: this.props.userData,
+      roomName: this.props.roomName,
+      quiz: this.props.quiz,
+      totalQuizCount: this.props.quiz.length,
+      currentQuizNum: 0,
     }
+    console.log(this.state.quiz)
   }
+
   componentWillMount = () => {
     console.log(this.props)
     const totalQuizCount = this.props.quiz.length
@@ -28,6 +30,7 @@ class Quiz extends React.Component {
       totalQuizCount: totalQuizCount,
       currentQuizNum: 0,
     })
+    console.log(this.state.quiz)
   }
 
   submitAnswer = (number) => {
@@ -57,9 +60,10 @@ class Quiz extends React.Component {
 
   componentDidMount = () => {
     firestore.collection('room').doc(this.state.roomName).onSnapshot(snap => {
-      console.log(snap.data())
+      console.log(this.props.quiz[0])
       const data = snap.data()
       const currentQuiz = this.state.quiz[this.state.currentQuizNum]
+      console.log(this.state.quiz, this.state.currentQuizNum)
       this.setState({ currentQuizNum: data.currentQuizNum })
 
       if (data.isResult) {   //順位出す
@@ -77,12 +81,10 @@ class Quiz extends React.Component {
       } else if (data.isShowImage) {    //画像表示
         this.setState({ render: <Image image={this.state.quiz[this.state.currentQuizNum].imageSrc} resolutionNum={this.state.resolutionNum} changeSelectAnswer={this.changeSelectAnswer} /> })
       } else if (data.isSelectResolution) {     //解像度選択
-        this.setState({ render: <SelectResolution selectResolution={this.selectResolution} /> }) //解像度を選択したら<Loading />にとばす
+        this.setState({ render: <SelectResolution selectResolution={this.selectResolution} age={this.state.quiz[this.state.currentQuizNum].age} /> }) //解像度を選択したら<Loading />にとばす
       } else if (data.isWaiting) {
         this.setState({ render: <Loading /> })
       }
-
-      console.log(this.state)
     })
   }
   render = () => {
