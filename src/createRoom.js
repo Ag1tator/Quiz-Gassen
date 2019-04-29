@@ -26,7 +26,7 @@ class CreateRoom extends React.Component {
       currentQuizNum: 0,
       isQuizFinish: false,
       isSelectResolution: false,
-      isWaiting: false,
+      isWaiting: true,
       isQuizStart: false,
       isFinish: false,
       createUser: this.props.user.displayName
