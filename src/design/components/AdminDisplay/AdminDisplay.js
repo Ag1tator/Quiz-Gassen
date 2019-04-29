@@ -1,9 +1,28 @@
 import React, { Component } from 'react'
 import { Doughnut } from 'react-chartjs-2';
 
+import { firestore } from '../../../firebase'
+
 import './../style.scss'
 
 class AdminDisplay extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            roomName: this.props.roomName,
+            roomData: null,
+            currentQuizNum: 0
+        }
+    }
+    componentwillMount = () => {
+        firestore.collection('room').doc(this.state.roomName).onSnapshot(snap => {
+            console.log("room", snap.data())
+
+        })
+        firestore.collection('room').doc(this.state.roomName).collection('quiz' + this.state.currentQuizNum).onSnapshot(snap => {
+            console.log("quiz" + this.state.currentQuizNum, snap.data())
+        })
+    }
     render() {
         const data = {
             labels: [
@@ -14,14 +33,14 @@ class AdminDisplay extends Component {
             datasets: [{
                 data: [300, 50, 100],
                 backgroundColor: [
-                '#FF6C6C',
-                '#179DE9',
-                '#616161'
+                    '#FF6C6C',
+                    '#179DE9',
+                    '#616161'
                 ],
                 hoverBackgroundColor: [
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56'
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56'
                 ]
             }]
         };
