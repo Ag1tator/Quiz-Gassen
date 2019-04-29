@@ -250,8 +250,13 @@ $bronze: #E19D5E;
             border: solid $primary-text;
         }
     
-        .rightOrWrong {
+        .right {
             color: $answer;
+            font-weight: 700;
+            font-size: 32px;
+        }
+        .wrong{
+            color: $primary-button;
             font-weight: 700;
             font-size: 32px;
         }
