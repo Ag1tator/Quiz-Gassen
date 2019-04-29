@@ -12,6 +12,8 @@ import CreateRoom from './createRoom'
 import SelectResolution from './design/components/SelectResolution/SelectResolution'
 import Quiz from './quiz'
 import SelectRoom from './selectRoom'
+import Admin from './admin'
+
 
 import './App.scss'
 
@@ -73,6 +75,7 @@ class App extends Component {
             <li><Link to='/design/components/Image/Image'>Image</Link></li>
             <li><Link to='/design/components/SelectAnswer/SelectAnswer'>SelectAnswers</Link></li>
             <li><Link to='/quiz'>Quiz</Link></li>
+            <li><Link to='/admin'>Admin</Link></li>
 
           </ul>
           <hr />
@@ -89,6 +92,14 @@ class App extends Component {
 
           <Route path='/selectRoom' render={() => <SelectRoom changeSelectedRoomNameState={this.changeRoomNameState} changeQuestionState={this.changeQuestionState} />} />
           <Route path='/design/components/SelectResolution/SelectResolution' component={SelectResolution} />
+          <Route path='/design/components/Loading/Loading' component={Loading} />
+          <Route path='/design/components/Image/Image' component={Image} />
+          <Route path='/design/components/SelectAnswer/SelectAnswer' component={SelectAnswer} />
+          <Route path='/selectRoom' render={() => <SelectRoom changeSelectedRoomNameState={this.changeRoomNameState} changeQuestionState={this.changeQuestionState} />} />
+          <Route path='/design/components/SelectResolution/SelectResolution' component={SelectResolution} />
+          <Route path='/admin' render={() =>
+            <Admin user={this.state.user} roomName={this.state.roomName} />
+          } />
         </div>
       </BrowserRouter>
     )
