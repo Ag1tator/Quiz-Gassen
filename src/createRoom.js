@@ -18,6 +18,7 @@ class CreateRoom extends React.Component {
     e.preventDefault();
   }
   handleSubmit = (e) => {
+    console.log("CH",this.props)
     e.preventDefault();
     const newRoom = {
       roomName: this.state.roomName,
