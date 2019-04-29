@@ -4,6 +4,13 @@ import './../style.scss'
 
 class Result extends Component {
     render() {
+        console.log(this.props.result)
+        let top = [];
+        const top3 = this.props.result.rank.slice(0, 3)
+        const other = this.props.result.rank.slice(4)
+        for (let i in top3) {
+            console.log(top3[i].displayName, top3[i].imageSrc)
+        }
         return (
             <div className="resultContainer">
                 <h1>結果発表</h1>
