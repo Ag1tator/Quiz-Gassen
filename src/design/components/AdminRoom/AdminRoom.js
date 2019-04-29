@@ -14,8 +14,8 @@ class AdminRoom extends Component {
     }
     chooseRoom = (e) => {
         console.log(e)
-        const className = e.target.className.split('-')
-        const quizNum = this.state.data[className[1]]
+        //const className = e.target.className.split('-')
+        //const quizNum = this.state.data[className[1]]
     }
     getQuizList = async (list) => {
         let data = []
