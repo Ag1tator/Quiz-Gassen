@@ -60,16 +60,12 @@ class Quiz extends React.Component {
       const data = snap.data()
       const currentQuiz = this.state.quiz[this.state.currentQuizNum]
       this.setState({ currentQuizNum: data.currentQuizNum })
-      if (data.isQuizFinish) {
-        this.setState({ render: <div>Finish</div> })
-      } else if (data.isResult) {
+
+      if (data.isResult) {   //順位出す
         this.setState({
           render: <Result result={data.result} userData={this.state.userData}/>
         })
-      }
-      else if (data.isSelectResolution) {
-        this.setState({ render: <SelectResolution selectResolution={this.selectResolution} /> }) //解像度を選択したら<Loading />にとばす
-      } else if (data.isCheckAnswer) {
+      } else if (data.isCheckAnswer) {    //正解不正解
         this.setState({
           render: <Answer
             isCollect={this.state.isCollect}
@@ -77,21 +73,12 @@ class Quiz extends React.Component {
             description={currentQuiz.description}
             answer={currentQuiz.answer[this.state.quiz[this.state.currentQuizNum.answerNum]]} />
         })
-      } else if (data.isWaiting) {
-        this.setState({ render: <Loading /> })
-      } else if (data.isShowImage) {
+      } else if (data.isShowImage) {    //画像表示
         this.setState({ render: <Image image={this.state.quiz[this.state.currentQuizNum].imageSrc} resolutionNum={this.state.resolutionNum} changeSelectAnswer={this.changeSelectAnswer} /> })
-      } else if (data.isQuizStart) {
-        this.setState({
-          render: <SelectAnswer
-            answer={currentQuiz.answer}
-            roomName={this.state.roomName}
-            userData={this.state.userData}
-            submitAnswer={this.submitAnswer} />
-        })
-      } else if (data.isFinish) {
-        this.setState({ render: <Loading /> })
+      } else if (data.isSelectResolution) {     //解像度選択
+        this.setState({ render: <SelectResolution selectResolution={this.selectResolution} /> }) //解像度を選択したら<Loading />にとばす
       }
+
       console.log(this.state)
     })
   }
