@@ -53,8 +53,6 @@ class Admin extends React.Component {
   render = () => {
     console.log(this.state)
     console.log(this.props)
-    let body = null;
-
     return (
       <div className="rapper" >
         <header className="adminHeader">
