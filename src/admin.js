@@ -3,7 +3,8 @@ import React from 'react'
 import { firestore } from './firebase'
 import AdminRoom from './design/components/AdminRoom/AdminRoom.js'
 import AdminTransition from './design/components/AdminTransition/AdminTransition'
-
+import CreateRoom from './createRoom'
+import FormApp from './form'
 class Admin extends React.Component {
   constructor(props) {
     super(props)
@@ -29,15 +30,7 @@ class Admin extends React.Component {
         if (this.props.roomName) {
           this.setState({ body: <AdminTransition /> })
         } else if (this.state.roomSnapShot) {
-          this.setState({
-            body:
-              <div className="container">
-                <h1>作成したRoom一覧</h1>
-                <ul>
-                  <AdminRoom roomSnapShot={this.state.roomSnapShot} user={this.props.user} roomNameHandler={this.roomNameHandler} quizHandlerChange={this.quizHandlerChange} />
-                </ul>
-              </div>
-          })
+          this.showRoomList()
         } else {
           this.setState({ body: <div></div> })
         }
@@ -47,6 +40,29 @@ class Admin extends React.Component {
     console.log(this.state)
     this.setState({
       body: <AdminTransition roomName={this.state.roomName} />
+    })
+  }
+  showRoomList = () => {
+    this.setState({
+      body:
+        <div className="container">
+          <h1>作成したRoom一覧</h1>
+          <ul>
+            <AdminRoom roomSnapShot={this.state.roomSnapShot} user={this.props.user} roomNameHandler={this.roomNameHandler} quizHandlerChange={this.quizHandlerChange} />
+          </ul>
+        </div>
+    })
+  }
+
+  onClickCreateRoom = () => {
+    this.setState({
+      body: <CreateRoom user={this.state.user} />
+    })
+  }
+
+  onClickCreateQuiz = () => {
+    this.setState({
+      body: <FormApp uid={this.state.user.l} />
     })
   }
 
@@ -60,13 +76,13 @@ class Admin extends React.Component {
           <nav>
             <ul>
               <li>
-                <button >Room一覧</button>
+                <button onClick={this.showRoomList}>Room一覧</button>
               </li>
               <li>
-                <button>Room作成</button>
+                <button onClick={this.onClickCreateRoom}>Room作成</button>
               </li>
               <li>
-                <button>Quiz作成</button>
+                <button onClick={this.onClickCreateQuiz}>Quiz作成</button>
               </li>
               <li>
                 <button onClick={this.moveAdminTransition}>画面</button>
