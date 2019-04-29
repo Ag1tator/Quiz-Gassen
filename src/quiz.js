@@ -4,7 +4,9 @@ import SelectResolution from './design/components/SelectResolution/SelectResolut
 import Loading from './design/components/Loading/Loading'
 import Image from './design/components/Image/Image'
 import SelectAnswer from './design/components/SelectAnswer/SelectAnswer'
+import Result from './design/components/Result/Result.js'
 import Answer from './design/components/Answer/Answer'
+
 class Quiz extends React.Component {
   constructor(props) {
     super(props)
@@ -60,7 +62,12 @@ class Quiz extends React.Component {
       this.setState({ currentQuizNum: data.currentQuizNum })
       if (data.isQuizFinish) {
         this.setState({ render: <div>Finish</div> })
-      } else if (data.isSelectResolution) {
+      } else if (data.isResult) {
+        this.setState({
+          render: <Result result={data.result} />
+        })
+      }
+      else if (data.isSelectResolution) {
         this.setState({ render: <SelectResolution selectResolution={this.selectResolution} /> }) //解像度を選択したら<Loading />にとばす
       } else if (data.isCheckAnswer) {
         this.setState({
