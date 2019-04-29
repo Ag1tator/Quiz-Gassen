@@ -10,11 +10,10 @@ import Transition from './transition'
 import NewHome from './design/components/Home/Home'
 import CreateRoom from './createRoom'
 import SelectResolution from './design/components/SelectResolution/SelectResolution'
-import Loading from './design/components/Loading/Loading'
-import Image from './design/components/Image/Image'
-import SelectAnswer from './design/components/SelectAnswer/SelectAnswer'
+import Quiz from './quiz'
 import SelectRoom from './selectRoom'
 import Admin from './admin'
+
 
 import './App.scss'
 
@@ -24,11 +23,19 @@ class App extends Component {
     roomName: null,
     questions: null,
   }
+
   changeUserState = (value) => {
     this.setState({
       user: value
     })
   }
+
+  changeQuizNum = () => {
+    this.setState({
+      currentQuizNum: 1
+    })
+  }
+
   changeRoomNameState = value => {
     this.setState({
       roomName: value
@@ -41,6 +48,7 @@ class App extends Component {
     })
     console.log(this.state)
   }
+
   showState = () => {
     console.log(this.state.user)
   }
@@ -79,6 +87,9 @@ class App extends Component {
           {this.state.user ? <Route path='/form' render={props => <FormApp changeUserState={this.changeUserState} uid={this.state.user.l} />} /> : <div></div>}
           <Route path='/design/components/Home/Home' component={NewHome} />
           <Route path='/createRoom' render={() => <CreateRoom user={this.state.user} />} />
+          <Route path='/quiz' render={() => <Quiz quiz={this.state.questions} roomName={this.state.roomName} userData={this.state.user} />} />
+
+
           <Route path='/selectRoom' render={() => <SelectRoom changeSelectedRoomNameState={this.changeRoomNameState} changeQuestionState={this.changeQuestionState} />} />
           <Route path='/design/components/SelectResolution/SelectResolution' component={SelectResolution} />
           <Route path='/design/components/Loading/Loading' component={Loading} />
