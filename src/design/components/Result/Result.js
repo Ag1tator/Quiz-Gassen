@@ -4,8 +4,6 @@ import './../style.scss'
 
 class Result extends Component {
     render() {
-        console.log(this.props)
-
         const result = this.props.result
         const user = this.props.userData.displayName
         const top3 = result.slice(0, 3)

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 import { firestore } from '../../../firebase'
 import './../style.scss'
 
@@ -35,8 +36,8 @@ class Room extends Component {
         this.getQuizList(roomData.quiz).then(quizList => {
             this.props.quizHandlerChange(quizList)
             this.props.selectedRoomHandlerChange(roomData.roomName)
+            this.props.history.push('/quiz')
         })
-
     }
     componentDidMount = () => {
         let list = [];
@@ -69,4 +70,4 @@ class Room extends Component {
     }
 }
 
-export default Room
+export default withRouter(Room)
