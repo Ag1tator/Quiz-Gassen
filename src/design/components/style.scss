@@ -250,8 +250,13 @@ $bronze: #E19D5E;
             border: solid $primary-text;
         }
     
-        .rightOrWrong {
+        .right {
             color: $answer;
+            font-weight: 700;
+            font-size: 32px;
+        }
+        .wrong{
+            color: $primary-button;
             font-weight: 700;
             font-size: 32px;
         }
@@ -287,40 +292,40 @@ $bronze: #E19D5E;
         }
     }
 
-    .top3 {
-        padding: 0;
-
-        li {
-            list-style-type: none;
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            color: white;
-            background-color: $primary-button;
-            padding: 8px 8px 8px 12px;
-            margin: 8px 0 8px 0;
-            border-radius: 60px;
-            height: 60px;
-            
-            img {
-                width: 52px;
-                height: 52px;
-                display: inline-block;
-                border-radius: 50%;
-            }
-
-            div {
-                font-size: 22px;
-                line-height: 55px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-        }
-    }
-
     .otherRanking {
         text-align: left;
         
         margin: 16px 24px 16px 24px;
+    }
+}
+
+.top3 {
+    padding: 0;
+
+    li {
+        list-style-type: none;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        color: white;
+        background-color: $primary-button;
+        padding: 8px 8px 8px 12px;
+        margin: 8px 0 8px 0;
+        border-radius: 60px;
+        height: 60px;
+        
+        img {
+            width: 52px;
+            height: 52px;
+            display: inline-block;
+            border-radius: 50%;
+        }
+
+        div {
+            font-size: 22px;
+            line-height: 55px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 }
 
@@ -487,5 +492,53 @@ $bronze: #E19D5E;
                 }
             }
         }
+    }
+}
+
+.adminFullScreen {
+    width: 100%;
+    height: 100vh;
+}
+
+.titleRapper {
+    height: 20vh;
+
+    h1 {
+        text-align: center;
+    }
+}
+
+.resolutionData {
+    height: 80vh;
+    color: $primary-text;
+
+    .rateRapper {
+        width: 50%;
+        height: 100%;
+        display: inline-block;
+        overflow: hidden;
+
+        h2 {
+            padding: 0 24px;
+        }
+    }
+
+    .answerSpeedRapper {
+        width: 50%;
+        height: 100%;
+        display: inline-block;
+        overflow: hidden;
+
+        h2 {
+            padding: 0 24px;
+        }
+    }
+}
+
+.adminTop3 {
+    margin: 0 auto;
+    
+    li {
+        width: 80%;
     }
 }
