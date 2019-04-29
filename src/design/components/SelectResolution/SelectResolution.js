@@ -66,7 +66,8 @@ class selectResolution extends Component {
                 <div className="quizForm">
                     <div className="quizTopRapper">
                         <div className="quizTop">
-                            <h1 className={this.state.changeScreen ? "none" : ""}>解像度を選択してね！</h1>
+                            <h1 className={this.state.changeScreen ? "none" : ""}>問題</h1>
+                            <h2 className={this.state.changeScreen ? "none" : ""}>平成{this.props.age}年</h2>
                             <div className={this.state.changeScreen ? "loaderRapper" : "loaderRapper none"}>
                                 <h1>クイズの開始を待っています</h1>
                                 <div className="loader">Loading...</div>
@@ -75,16 +76,16 @@ class selectResolution extends Component {
                     </div>
                     <ul className="quizList">
                         <li className={this.state.checkbutton0 ? "hidden" : ""}>
-                            <button onClick={this.changeButton0State}>１G</button>
+                            <button onClick={this.changeButton0State}>めちゃ小さい</button>
                         </li>
                         <li className={this.state.checkbutton1 ? "hidden" : ""}>
-                            <button onClick={this.changeButton1State}>2G</button>
+                            <button onClick={this.changeButton1State}>ちいさい</button>
                         </li>
                         <li className={this.state.checkbutton2 ? "hidden" : ""}>
-                            <button onClick={this.changeButton2State}>3G</button>
+                            <button onClick={this.changeButton2State}>ちょっと小さい</button>
                         </li>
                         <li className={this.state.checkbutton3 ? "hidden" : ""}>
-                            <button onClick={this.changeButton3State}>4G</button>
+                            <button onClick={this.changeButton3State}>普通</button>
                         </li>
                     </ul>
                 </div>
