@@ -6,6 +6,7 @@ import SelectAnswer from './design/components/SelectAnswer/SelectAnswer'
 import Result from './design/components/Result/Result.js'
 import Answer from './design/components/Answer/Answer'
 import Loading from './design/components/Loading/Loading'
+import Admin from './admin'
 
 class Quiz extends React.Component {
   constructor(props) {
@@ -61,8 +62,13 @@ class Quiz extends React.Component {
       const data = snap.data()
       const currentQuiz = this.state.quiz[this.state.currentQuizNum]
       this.setState({ currentQuizNum: data.currentQuizNum })
+      console.log("CH",this.state.userData)
 
-      if (data.isResult) {   //順位出す
+      if (data.isAdmin) {   //Admin画面
+        this.setState({
+          render: <Admin user={this.state.userData} roomName={this.state.roomName} />
+        })
+      }else if (data.isResult) {   //順位出す
         this.setState({
           render: <Result result={data.result} userData={this.state.userData} />
         })
@@ -75,8 +81,6 @@ class Quiz extends React.Component {
             answer={currentQuiz.answer[this.state.quiz[this.state.currentQuizNum.answerNum]]} />
         })
       } else if (data.isShowImage) {    //画像表示
-        console.log("CHSTATE",this.state.quiz)
-        console.log("CHSTATE",typeof this.state.quiz)
         this.setState({ render: <Image image={this.state.quiz[this.state.currentQuizNum].imageSrc} resolutionNum={this.state.resolutionNum} changeSelectAnswer={this.changeSelectAnswer} /> })
       } else if (data.isSelectResolution) {     //解像度選択
         this.setState({ render: <SelectResolution selectResolution={this.selectResolution} /> }) //解像度を選択したら<Loading />にとばす
