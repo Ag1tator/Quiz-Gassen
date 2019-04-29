@@ -38,7 +38,8 @@ class Quiz extends React.Component {
     }
     firestore.collection('room').doc(this.state.roomName).collection(this.state.userData.displayName).doc('quiz' + this.state.currentQuizNum).set({
       answer: number,
-      isCollect: isCollect
+      isCollect: isCollect,
+      submitAt: Date.now()
     })
     this.setState({ isCollect: isCollect })
     console.log(this.state)
@@ -63,7 +64,7 @@ class Quiz extends React.Component {
 
       if (data.isResult) {   //順位出す
         this.setState({
-          render: <Result result={data.result} userData={this.state.userData}/>
+          render: <Result result={data.result} userData={this.state.userData} />
         })
       } else if (data.isCheckAnswer) {    //正解不正解
         this.setState({
