@@ -4,19 +4,27 @@ import './../style.scss'
 
 class Result extends Component {
     render() {
-        const top3 = this.props.result.rank.slice(0, 3) //def:3
-        const others = this.props.result.rank.slice(4)
-        const list = []
-        for(var i in others){
+        const rank = this.props.result.rank
+        const user = this.props.userData.displayName
+        const top3 = rank.slice(0, 3)
+        const others = rank.slice(3)
+        const list = []; var ranking = 0;
+        for(let i in others){
           list.push(<li>{others[i].displayName}</li>)
         }
-        //console.log('CH',list)
+        for(let i in rank){
+          if(rank[i].displayName === user){
+            ranking = Number(i) + 1
+            break
+          }
+        }
+        
         return (
             <div className="resultContainer">
                 <h1>結果発表</h1>
                 <h2>あなたの順位は
                     <div className="ranking bronze">
-                        <span className="number">3</span>位!!
+                        <span className="number">{ranking}</span>位!!
                     </div>
                 </h2>
                 <ul className="top3">

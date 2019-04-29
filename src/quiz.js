@@ -64,7 +64,7 @@ class Quiz extends React.Component {
         this.setState({ render: <div>Finish</div> })
       } else if (data.isResult) {
         this.setState({
-          render: <Result result={data.result} />
+          render: <Result result={data.result} userData={this.state.userData}/>
         })
       }
       else if (data.isSelectResolution) {
