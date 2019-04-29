@@ -1,7 +1,6 @@
 import React from 'react'
 import { firestore } from './firebase';
 import SelectResolution from './design/components/SelectResolution/SelectResolution'
-import Loading from './design/components/Loading/Loading'
 import Image from './design/components/Image/Image'
 import SelectAnswer from './design/components/SelectAnswer/SelectAnswer'
 import Result from './design/components/Result/Result.js'
