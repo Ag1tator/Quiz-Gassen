@@ -1,50 +1,79 @@
 import React, { Component } from 'react'
+import { firestore } from '../../../firebase'
 
 import './../style.scss'
 
 class AdminRoom extends Component {
-  render() {
-    console.log(this.props.image)
-    return (
-        <div className="rapper">
-            <header className="adminHeader">
-                <nav>
-                    <ul>
-                            <li>
-                                <button>Room一覧</button>
-                            </li>
-                            <li>
-                                <button>Room作成</button>
-                            </li>
-                            <li>
-                                <button>Quiz作成</button>
-                            </li>
-                            <li>
-                                <button>画面</button>
-                            </li>
-                    </ul>
-                </nav>
-            </header>
-            <div className="container">
-                <h1>作成したRoom一覧</h1>
-                <ul>
+    constructor(props) {
+        super(props)
+        this.state = {
+            roomData: null,
+            list: [],
+            roomName: null
+        }
+    }
+    chooseRoom = (e) => {
+        console.log(e)
+        const className = e.target.className.split('-')
+        const quizNum = this.state.data[className[1]]
+    }
+    getQuizList = async (list) => {
+        let data = []
+        await Promise.all(list.map(async (name, i) => {
+            firestore.collection('quiz').doc(name).get().then(snap => {
+                data.push(snap.data())
+            })
+        }
+        ))
+        return data
+    }
+
+    getRoomInfo = (e) => {
+        console.log(e.target.className)
+        const className = e.target.className.split('-')
+        const roomData = this.state.roomData[className[1]]
+        this.props.quizHandlerChange(roomData.quiz)
+        this.props.roomNameHandler(roomData.roomName)
+    }
+    getQuizList = async (list) => {
+        let data = []
+        await Promise.all(list.map(async (name, i) => {
+            firestore.collection('quiz').doc(name).get().then(snap => {
+                data.push(snap.data())
+            })
+        }
+        ))
+        return data
+    }
+
+    componentDidMount = () => {
+        console.log("componentDidMount", this.props)
+        let list = []
+        let roomList = [];
+        let index = 0;
+
+        if (this.props.roomSnapShot !== null) {
+            this.props.roomSnapShot.forEach(doc => {
+                const data = doc.data()
+                const className = "question-" + index++;
+                roomList.push(data)
+                list.push(
                     <li>
-                        <button>Room</button>
+                        <button
+                            className={className}
+                            onClick={this.getRoomInfo}>
+                            {data.roomName}
+                        </button>
                     </li>
-                    <li>
-                        <button>Room</button>
-                    </li>
-                    <li>
-                        <button>Room</button>
-                    </li>
-                    <li>
-                        <button>Room</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    )
-  }
+                )
+            })
+            this.setState({ roomData: roomList, list: list })
+        }
+    }
+    render() {
+        console.log(this.state)
+        return this.state.list
+    }
 }
 
 export default AdminRoom
