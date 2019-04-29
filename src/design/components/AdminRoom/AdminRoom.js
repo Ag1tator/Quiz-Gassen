@@ -12,6 +12,7 @@ class AdminRoom extends Component {
             roomName: null
         }
     }
+
     getQuizList = async (list) => {
         let data = []
         await Promise.all(list.map(async (name, i) => {
