@@ -24,6 +24,11 @@ $bronze: #E19D5E;
     transform: translate(-50%, -50%);
     text-align: center;
 
+    img {
+        width: 50vw;
+        padding: 32px 0;
+    }
+
     h1 {
         font-size: calc(32px + 3vw);
         width: 100vw;
