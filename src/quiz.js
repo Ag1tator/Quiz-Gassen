@@ -5,6 +5,7 @@ import Image from './design/components/Image/Image'
 import SelectAnswer from './design/components/SelectAnswer/SelectAnswer'
 import Result from './design/components/Result/Result.js'
 import Answer from './design/components/Answer/Answer'
+import Loading from './design/components/Loading/Loading'
 
 class Quiz extends React.Component {
   constructor(props) {
@@ -77,6 +78,8 @@ class Quiz extends React.Component {
         this.setState({ render: <Image image={this.state.quiz[this.state.currentQuizNum].imageSrc} resolutionNum={this.state.resolutionNum} changeSelectAnswer={this.changeSelectAnswer} /> })
       } else if (data.isSelectResolution) {     //解像度選択
         this.setState({ render: <SelectResolution selectResolution={this.selectResolution} /> }) //解像度を選択したら<Loading />にとばす
+      } else if (data.isWaiting) {
+        this.setState({ render: <Loading /> })
       }
 
       console.log(this.state)
