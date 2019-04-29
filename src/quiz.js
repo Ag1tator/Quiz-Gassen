@@ -36,7 +36,7 @@ class Quiz extends React.Component {
     if (this.state.quiz[this.state.currentQuizNum].answerNum === number) {
       isCollect = true
     }
-    firestore.collection('room').doc(this.state.roomName).collection(this.state.userData.displayName).doc('quiz' + this.state.currentQuizNum).set({
+    firestore.collection('room').doc(this.state.roomName).collection('quiz' + this.state.currentQuizNum).doc(this.state.userData.displayName).set({
       answer: number,
       isCollect: isCollect,
       submitAt: Date.now()
