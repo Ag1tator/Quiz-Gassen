@@ -42,7 +42,9 @@ class Quiz extends React.Component {
     firestore.collection('room').doc(this.state.roomName).collection('quiz' + this.state.currentQuizNum).doc(this.state.userData.displayName).set({
       answer: number,
       isCollect: isCollect,
-      submitAt: Date.now()
+      submitAt: Date.now(),
+      displayName: this.state.userData.displayName,
+      imageSrc: this.state.userData.imageSrc
     })
     this.setState({ isCollect: isCollect })
     console.log(this.state)
