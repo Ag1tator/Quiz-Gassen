@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { firebase, firestore } from './firebase'
+import { withRouter } from 'react-router'
 
 import Home from './design/components/Home/Home'
 
 class Login extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -40,17 +40,20 @@ class Login extends Component {
           }
           this.createNewUser(user.displayName, userData)
         }
+        this.props.history.push('/selectRoom')
       }
     })
   }
 
-  login() {
+  login = () => {
     const provider = new firebase.auth.TwitterAuthProvider();
     firebase.auth().signInWithRedirect(provider)
   }
 
-  logout() {
+  logout = () => {
     firebase.auth().signOut()
+    this.setState({ user: null})
+    this.props.changeUserState(null)
   }
 
   render() {
@@ -66,4 +69,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default withRouter(Login)

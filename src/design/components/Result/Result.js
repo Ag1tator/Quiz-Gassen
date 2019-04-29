@@ -4,7 +4,7 @@ import './../style.scss'
 
 class Result extends Component {
     render() {
-        const rank = this.props.result.rank
+        const rank = this.props.result
         const user = this.props.userData.displayName
         const top3 = rank.slice(0, 3)
         const others = rank.slice(3)
@@ -18,7 +18,7 @@ class Result extends Component {
             break
           }
         }
-        
+
         return (
             <div className="resultContainer">
                 <h1>結果発表</h1>
