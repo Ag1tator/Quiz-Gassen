@@ -53,8 +53,11 @@ class App extends Component {
     console.log(this.state.user)
   }
 
-  logout() {
+  logout = () => {
     firebase.auth().signOut()
+    this.setState({
+      user: null
+    })
   }
 
   render() {
@@ -80,7 +83,7 @@ class App extends Component {
           </ul>
           <hr />
 
-          <Route exact path='/' component={Home} />
+          <Route exact path='/' render={() => <Home />} />
           <Route path='/login' render={() => <Login changeUserState={this.changeUserState} />} />
           <Route path='/quizlist' component={QuestionList} />
           <Route path='/transition' render={() => <Transition />} />
