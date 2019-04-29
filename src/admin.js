@@ -5,6 +5,7 @@ import AdminRoom from './design/components/AdminRoom/AdminRoom.js'
 import AdminTransition from './design/components/AdminTransition/AdminTransition'
 import CreateRoom from './createRoom'
 import FormApp from './form'
+import AdminDisplay from './design/components/AdminDisplay/AdminDisplay'
 class Admin extends React.Component {
   constructor(props) {
     super(props)
@@ -66,6 +67,12 @@ class Admin extends React.Component {
     })
   }
 
+  onClickResult = () => {
+    this.setState({
+      body: <AdminDisplay roomName={this.state.roomName} />
+    })
+  }
+
   render = () => {
     console.log(this.state)
     console.log(this.props)
@@ -85,7 +92,10 @@ class Admin extends React.Component {
                 <button onClick={this.onClickCreateQuiz}>Quiz作成</button>
               </li>
               <li>
-                <button onClick={this.moveAdminTransition}>画面</button>
+                <button onClick={this.moveAdminTransition}>出題画面</button>
+              </li>
+              <li>
+                <button onClick={this.onClickResult}>結果表示画面</button>
               </li>
             </ul>
           </nav>
