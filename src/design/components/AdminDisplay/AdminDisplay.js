@@ -23,71 +23,52 @@ class AdminDisplay extends Component {
     componentWillMount = () => {
 
         console.log(this.state.currentQuizNum)
-        const answerRef = firestore.collection('room').doc(this.props.roomName).collection('quiz' + this.state.currentQuizNum).orderBy("submitAt", "asc")
-        answerRef.onSnapshot(snap => {
-            snap.docChanges().forEach(change => {
-                const answerDataChange = change.doc.data()
-                if (change.type === "added") {
-                    console.log(answerDataChange.isCollect)
-                    if (answerDataChange.isCollect === true) {
+        firestore.collection('room').doc(this.props.roomName).onSnapshot(doc => {
+            this.setState({ currentQuizNum: doc.data().currentQuizNum })
+            const answerRef = firestore.collection('room')
+                .doc(this.props.roomName)
+                .collection('quiz' + this.state.currentQuizNum)
+                .orderBy("submitAt", "asc")
+
+            answerRef.onSnapshot(snap => {
+                snap.docChanges().forEach(change => {
+                    const answerDataChange = change.doc.data()
+                    if (change.type === "added") {
+                        console.log(answerDataChange.isCollect)
                         const list = this.state.list
-                        this.setState({ collect: this.state.collect + 1 })
-                        list.push({
-                            displayName: answerDataChange.displayName,
-                            imageSrc: answerDataChange.imageSrc
-                        })
-                        if (this.state.list.length < 3) {
-                            let top3 = this.state.top3
-                            const i = this.state.list.length
+                        if (answerDataChange.isCollect === true) {
 
-                            const className = ['borderGold', 'borderSilver', 'borderBronze']
-                            const alt = ['1st', '2nd', '3rd']
-                            top3.push(
-                                <li>
-                                    <img className={className[this.state.list.length]} src={answerDataChange.imageSrc} alt={alt[i]}></img>
-                                    <div>{answerDataChange.displayName}</div>
-                                    <div><span className="number">{i}</span>{i === 1 ? "st" : "nd"}</div>
-                                </li>
-                            )
-                            this.setState({ top3: top3 })
+                            this.setState({ collect: this.state.collect + 1 })
+                            list.push({
+                                displayName: answerDataChange.displayName,
+                                imageSrc: answerDataChange.imageSrc
+                            })
+                            if (this.state.list.length < 3) {
+                                let top3 = this.state.top3
+                                const i = this.state.list.length
+                                const className = ['borderGold', 'borderSilver', 'borderBronze']
+                                const alt = ['1st', '2nd', '3rd']
+                                console.log("正解者: ", answerDataChange)
+                                top3.push(
+                                    <li>
+                                        <img className={className[this.state.list.length]} src={answerDataChange.imageSrc} alt={alt[i]}></img>
+                                        <div>{answerDataChange.displayName}</div>
+                                        <div><span className="number">{i}</span>{i === 1 ? "st" : "nd"}</div>
+                                    </li>
+                                )
+                                this.setState({ top3: top3 })
+                            }
+                        } else {
+                            this.setState({ inCollect: this.state.inCollect + 1 })
+
                         }
-
-                    } else {
-                        this.setState({ inCollect: this.state.inCollect + 1 })
                     }
-                    //this.setState({ answerData: answerData })
-                    console.log(answerDataChange)
-                }
+                })
             })
-        })
-    }
-    /*
-        makeTop3 = (list) => {
-    
-            let top3 = [];
-            let max = 3;
-            if (list.length < 3) {
-                max = list.length
-            }
-            for (let i = 0; i < max; i++) {
-                console.log(list[i])
-    
-    
-                top3.push(
-                    <li>
-                        <img className={className[i]} src={userData.imageSrc} alt={alt[i]}></img>
-                        <div>{userData.displayName}</div>
-                        <div><span className="number">{i + 1}</span>{i + 1 === 1 ? "st" : "nd"}</div>
-                    </li>
-                )
-            }
-            console.log(top3)
-            this.setState({
-                top3: top3
-            })
-        }
-    */
 
+        })
+
+    }
 
     render() {
         console.log(this.state)
@@ -114,7 +95,7 @@ class AdminDisplay extends Component {
         return (
             <div className="adminFullScreen">
                 <div className="titleRapper">
-                    <h1>1問目</h1>
+                    <h1>{this.state.currentQuizNum + 1}問目</h1>
                 </div>
                 <main className="resolutionData">
                     <div className="rateRapper">
