@@ -26,10 +26,12 @@ class Image extends Component {
       this.img = new window.Image()
 
       this.img.addEventListener('load', () => {
-        //console.log(this.img.width)
-        //console.log(this.img.height)
-        const w = this.img.width
-        const h = this.img.height
+        console.log("W",this.img.width)
+        console.log("H",this.img.height)
+        //const w = this.img.width
+        //const h = this.img.height
+        const w = 500
+        const h = 500
         const imgPx = w * h
         let c = 0, a = 0
         const startTime = Date.now()
@@ -40,7 +42,8 @@ class Image extends Component {
             ctx.beginPath()
             ctx.arc(c, radius + a, radius + 1, 0, Math.PI * 2, false)
             ctx.clip()
-            ctx.drawImage(this.img, 0, 0)
+            ctx.drawImage(this.img, 0, 0, w, h)
+            //ctx.drawImage(this.img, 0, 0, w, h, 0, 0, w * 0.5, h * 0.5)
             c++
             if (c > w) {
               c = 0
@@ -63,7 +66,7 @@ class Image extends Component {
     return (
       <div className="fullScreen imageRapper" onClick={() => this.props.changeSelectAnswer()}>
         <div className="imageBackground">
-          <canvas ref={(e) => { this.canvas = e }} width='1024' height='720' ></canvas>
+          <canvas ref={(e) => { this.canvas = e }} width='500' height='500' ></canvas>
         </div>
         <footer><h1>わかったら<br />画面をタップ！</h1></footer>
       </div>
