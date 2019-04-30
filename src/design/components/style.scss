@@ -119,7 +119,7 @@ $bronze: #E19D5E;
             width: 100vw;
             margin: 12px 0 12px 0;
         }
-    
+
         h2 {
             font-size: calc(24px + 3vw);
             width: 100vw;
@@ -193,28 +193,30 @@ $bronze: #E19D5E;
 
     .imageBackground {
         width: 100vw;
-        height: 80vh;
+        height: 100vw;
         background-color: #616161;
 
         img {
             width: 100vw;
+        }
+
+        canvas {
+            width: 100vw;
+            height: 100vw;
         }
     }
 
     footer {
         text-align: center;
         width: 100vw;
-        height: 20vh;
+        height: 100%;
         position: relative;
         background-color: #496CA1;
 
         h1 {
             margin: 0;
             width: 100vw;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            padding: 36px 0;
             color: white;
         }
     }
@@ -254,7 +256,7 @@ $bronze: #E19D5E;
             object-fit: cover;
             border: solid $primary-text;
         }
-    
+
         .right {
             color: $answer;
             font-weight: 700;
@@ -291,7 +293,7 @@ $bronze: #E19D5E;
     h2 {
         font-size: 32px;
         font-weight: 400;
-        
+
         .ranking {
             font-weight: 700;
         }
@@ -299,7 +301,7 @@ $bronze: #E19D5E;
 
     .otherRanking {
         text-align: left;
-        
+
         margin: 16px 24px 16px 24px;
     }
 }
@@ -317,7 +319,7 @@ $bronze: #E19D5E;
         margin: 8px 0 8px 0;
         border-radius: 60px;
         height: 60px;
-        
+
         img {
             width: 52px;
             height: 52px;
@@ -542,7 +544,7 @@ $bronze: #E19D5E;
 
 .adminTop3 {
     margin: 0 auto;
-    
+
     li {
         width: 80%;
     }
