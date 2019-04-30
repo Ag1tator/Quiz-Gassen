@@ -23,13 +23,17 @@ class AdminDisplay extends Component {
     componentWillMount = () => {
 
         console.log(this.state.currentQuizNum)
+        this.setState({ list: [], top3: [] })
         firestore.collection('room').doc(this.props.roomName).onSnapshot(doc => {
+            alert("onSnapshot", doc.data())
+            this.setState({ list: [], top3: [], collect: 0, inCollect: 0 })
+            console.log(doc.type)
             this.setState({ currentQuizNum: doc.data().currentQuizNum })
             const answerRef = firestore.collection('room')
                 .doc(this.props.roomName)
                 .collection('quiz' + this.state.currentQuizNum)
                 .orderBy("submitAt", "asc")
-
+            console.log(this.state.currentQuizNum)
             answerRef.onSnapshot(snap => {
                 snap.docChanges().forEach(change => {
                     const answerDataChange = change.doc.data()
@@ -37,13 +41,12 @@ class AdminDisplay extends Component {
                         console.log(answerDataChange.isCollect)
                         const list = this.state.list
                         if (answerDataChange.isCollect === true) {
-
                             this.setState({ collect: this.state.collect + 1 })
                             list.push({
                                 displayName: answerDataChange.displayName,
                                 imageSrc: answerDataChange.imageSrc
                             })
-                            if (this.state.list.length < 3) {
+                            if (this.state.list.length < 4) {
                                 let top3 = this.state.top3
                                 const i = this.state.list.length
                                 const className = ['borderGold', 'borderSilver', 'borderBronze']
