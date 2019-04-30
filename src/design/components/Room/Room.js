@@ -56,7 +56,7 @@ class Room extends Component {
     render() {
         console.log(this.state)
         return (
-            <div className="fullScreen">
+            <div className="roomFullScreen">
                 <header>
                     <div className="titleContainer">
                         クイズ部屋一覧
