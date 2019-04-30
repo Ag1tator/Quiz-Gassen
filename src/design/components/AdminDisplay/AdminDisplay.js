@@ -11,27 +11,93 @@ class AdminDisplay extends Component {
         this.state = {
             roomName: this.props.roomName,
             roomData: null,
-            currentQuizNum: 0
+            currentQuizNum: 0,
+            collect: 0,
+            inCollect: 0,
+            list: [],
+            top3: []
+
         }
     }
-    componentwillMount = () => {
-        firestore.collection('room').doc(this.state.roomName).onSnapshot(snap => {
-            console.log("room", snap.data())
 
-        })
-        firestore.collection('room').doc(this.state.roomName).collection('quiz' + this.state.currentQuizNum).onSnapshot(snap => {
-            console.log("quiz" + this.state.currentQuizNum, snap.data())
+    componentWillMount = () => {
+
+        console.log(this.state.currentQuizNum)
+        const answerRef = firestore.collection('room').doc(this.props.roomName).collection('quiz' + this.state.currentQuizNum).orderBy("submitAt", "asc")
+        answerRef.onSnapshot(snap => {
+            snap.docChanges().forEach(change => {
+                const answerDataChange = change.doc.data()
+                if (change.type === "added") {
+                    console.log(answerDataChange.isCollect)
+                    if (answerDataChange.isCollect === true) {
+                        const list = this.state.list
+                        this.setState({ collect: this.state.collect + 1 })
+                        list.push({
+                            displayName: answerDataChange.displayName,
+                            imageSrc: answerDataChange.imageSrc
+                        })
+                        if (this.state.list.length < 3) {
+                            let top3 = this.state.top3
+                            const i = this.state.list.length
+
+                            const className = ['borderGold', 'borderSilver', 'borderBronze']
+                            const alt = ['1st', '2nd', '3rd']
+                            top3.push(
+                                <li>
+                                    <img className={className[this.state.list.length]} src={answerDataChange.imageSrc} alt={alt[i]}></img>
+                                    <div>{answerDataChange.displayName}</div>
+                                    <div><span className="number">{i}</span>{i === 1 ? "st" : "nd"}</div>
+                                </li>
+                            )
+                            this.setState({ top3: top3 })
+                        }
+
+                    } else {
+                        this.setState({ inCollect: this.state.inCollect + 1 })
+                    }
+                    //this.setState({ answerData: answerData })
+                    console.log(answerDataChange)
+                }
+            })
         })
     }
+    /*
+        makeTop3 = (list) => {
+    
+            let top3 = [];
+            let max = 3;
+            if (list.length < 3) {
+                max = list.length
+            }
+            for (let i = 0; i < max; i++) {
+                console.log(list[i])
+    
+    
+                top3.push(
+                    <li>
+                        <img className={className[i]} src={userData.imageSrc} alt={alt[i]}></img>
+                        <div>{userData.displayName}</div>
+                        <div><span className="number">{i + 1}</span>{i + 1 === 1 ? "st" : "nd"}</div>
+                    </li>
+                )
+            }
+            console.log(top3)
+            this.setState({
+                top3: top3
+            })
+        }
+    */
+
+
     render() {
+        console.log(this.state)
         const data = {
             labels: [
                 '正解',
                 '不正解',
-                '未回答'
             ],
             datasets: [{
-                data: [300, 50, 100],
+                data: [this.state.collect, this.state.inCollect],
                 backgroundColor: [
                     '#FF6C6C',
                     '#179DE9',
@@ -57,23 +123,8 @@ class AdminDisplay extends Component {
                     </div>
                     <div className="answerSpeedRapper">
                         <h2>正解したはやさ</h2>
-
                         <ul className="top3 adminTop3">
-                            <li>
-                                <img className="borderGold" src="asasigure.jpg" alt="1st"></img>
-                                <div>asasigure_ice</div>
-                                <div><span className="number">1</span>st</div>
-                            </li>
-                            <li>
-                                <img className="borderSilver" src="asasigure.jpg" alt="1st"></img>
-                                <div>asasigure_ice</div>
-                                <div><span className="number">2</span>st</div>
-                            </li>
-                            <li>
-                                <img className="borderBronze" src="asasigure.jpg" alt="1st"></img>
-                                <div>asasigure_ice</div>
-                                <div><span className="number">3</span>st</div>
-                            </li>
+                            {this.state.top3}
                         </ul>
                     </div>
                 </main>
@@ -81,5 +132,7 @@ class AdminDisplay extends Component {
         )
     }
 }
+
+
 
 export default AdminDisplay

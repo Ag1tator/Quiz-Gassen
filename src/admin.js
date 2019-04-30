@@ -14,6 +14,7 @@ class Admin extends React.Component {
       roomSnapShot: null,
       roomName: null,
       quiz: null,
+      currentQuizNum: 0
     }
   }
   roomNameHandler = (roomName) => {
@@ -21,8 +22,11 @@ class Admin extends React.Component {
   }
   quizHandlerChange = (quizList) => {
     this.setState({ quizList: quizList })
-
   }
+  quizCurrentNumChange = (number) => {
+    this.setState({ currentQuizNum: number })
+  }
+  quizState
   componentWillMount = () => {
     firestore.collection("room")
       .where("createUser", "==", this.props.user.displayName).get().then(snap => {
@@ -40,7 +44,7 @@ class Admin extends React.Component {
   moveAdminTransition = () => {
     console.log(this.state)
     this.setState({
-      body: <AdminTransition roomName={this.state.roomName} />
+      body: <AdminTransition roomName={this.state.roomName} quizCurrentNumChange={this.quizCurrentNumChange} />
     })
   }
   showRoomList = () => {
@@ -49,7 +53,13 @@ class Admin extends React.Component {
         <div className="container">
           <h1>作成したRoom一覧</h1>
           <ul>
-            <AdminRoom roomSnapShot={this.state.roomSnapShot} user={this.props.user} roomNameHandler={this.roomNameHandler} quizHandlerChange={this.quizHandlerChange} />
+            <AdminRoom
+              roomSnapShot={this.state.roomSnapShot}
+              user={this.props.user}
+              roomNameHandler={this.roomNameHandler}
+              quizHandlerChange={this.quizHandlerChange}
+              quizCurrentNumChange={this.quizCurrentNumChange} />
+
           </ul>
         </div>
     })
@@ -69,7 +79,7 @@ class Admin extends React.Component {
 
   onClickResult = () => {
     this.setState({
-      body: <AdminDisplay roomName={this.state.roomName} />
+      body: <AdminDisplay roomName={this.state.roomName} currentQuizNum={this.state.currentQuizNum} />
     })
   }
 
