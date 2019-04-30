@@ -12,13 +12,26 @@ class Image extends Component {
     }
 
     draw = () => {
-      switch (this.props.resolutionNum) {
-        case 0: speed = 45; time = 2; break; //大体8Kbps
-        case 1: speed = 90; time = 2; break; //大体16Kbps
-        case 2: speed = 360; time = 2; break; //大体32Kbps
-        case 3: speed = 720; radius = 1; break; //大体64Kbps
-        default: speed = 360; time = 2;
+      const age = this.props.age
+      //console.log("CH",typeof age)
+      if(0 < age && age <= 8){
+        speed = 45; time = 2;  //大体8Kbps
+        console.log("CH0~5")
+      }else if(8 < age && age <= 16){
+        speed = 90; time = 2;  //大体16Kbps
+        console.log("CH5~10")
+      }else if(16 < age && age <= 24){
+        speed = 360; time = 2;  //大体32Kbps
+        console.log("CH15~20")
+      }else if(24 < age && age <= 302){
+        speed = 720; radius = 1;  //大体64Kbps
+        console.log("CH25~30")
       }
+      else{
+        speed = 360; time = 2;
+        console.log("CHelse")
+      }
+      speed = 720; radius = 1;
 
       const { canvas } = this
       const ctx = canvas.getContext('2d')
@@ -26,8 +39,8 @@ class Image extends Component {
       this.img = new window.Image()
 
       this.img.addEventListener('load', () => {
-        console.log("W",this.img.width)
-        console.log("H",this.img.height)
+        //console.log("W",this.img.width)
+        //console.log("H",this.img.height)
         //const w = this.img.width
         //const h = this.img.height
         const w = 500
@@ -42,8 +55,13 @@ class Image extends Component {
             ctx.beginPath()
             ctx.arc(c, radius + a, radius + 1, 0, Math.PI * 2, false)
             ctx.clip()
-            ctx.drawImage(this.img, 0, 0, w, h)
-            //ctx.drawImage(this.img, 0, 0, w, h, 0, 0, w * 0.5, h * 0.5)
+            switch (this.props.resolutionNum) {
+                case 0: ctx.drawImage(this.img, 0, 0, w, h, 0, 0, w * 0.3, h * 0.3); break
+                case 1: ctx.drawImage(this.img, 0, 0, w, h, 0, 0, w * 0.5, h * 0.5); break
+                case 2: ctx.drawImage(this.img, 0, 0, w, h, 0, 0, w * 0.8, h * 0.8); break
+                case 3: ctx.drawImage(this.img, 0, 0, w, h); break
+                default: ctx.drawImage(this.img, 0, 0, w, h)
+            }
             c++
             if (c > w) {
               c = 0
