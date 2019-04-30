@@ -81,7 +81,7 @@ class Quiz extends React.Component {
             answer={currentQuiz.answer[this.state.quiz[this.state.currentQuizNum.answerNum]]} />
         })
       } else if (data.isShowImage) {    //画像表示
-        this.setState({ render: <Image image={this.state.quiz[this.state.currentQuizNum].imageSrc} resolutionNum={this.state.resolutionNum} changeSelectAnswer={this.changeSelectAnswer} /> })
+        this.setState({ render: <Image image={this.state.quiz[this.state.currentQuizNum].imageSrc} resolutionNum={this.state.resolutionNum} changeSelectAnswer={this.changeSelectAnswer} age={this.state.quiz[this.state.currentQuizNum].age}/> })
       } else if (data.isSelectResolution) {     //解像度選択
         this.setState({ render: <SelectResolution selectResolution={this.selectResolution} age={this.state.quiz[this.state.currentQuizNum].age} /> }) //解像度を選択したら<Loading />にとばす
       } else if (data.isWaiting) {
