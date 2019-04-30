@@ -64,27 +64,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <ul>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/login'>Login</Link></li>
-            <li><Link to='/quizlist'>Quiz list</Link></li>
-            <li><Link to='/transition'>transition</Link></li>
-            <li><Link to='/design/components/Home/Home'>NewHome</Link></li>
-            {this.state.user ? <div><li><Link to='/form'>New Quiz</Link></li>
-              <li><Link to='/createRoom'>CreateRoom</Link></li></div> : <div></div>}
-            <li><Link to='/selectRoom'>SelectRoom</Link></li>
-            <li><Link to='/design/components/SelectResolution/SelectResolution'>SelectResolution</Link></li>
-            <li><Link to='/design/components/Loading/Loading'>Loading</Link></li>
-            <li><Link to='/design/components/Image/Image'>Image</Link></li>
-            <li><Link to='/design/components/SelectAnswer/SelectAnswer'>SelectAnswers</Link></li>
-            <li><Link to='/quiz'>Quiz</Link></li>
-            <li><Link to='/admin'>Admin</Link></li>
-
-          </ul>
-          <hr />
-
-          <Route exact path='/' render={() => <Home />} />
-          <Route path='/login' render={() => <Login changeUserState={this.changeUserState} />} />
+          <Route exact path='/' render={() => <Login changeUserState={this.changeUserState} />} />
           <Route path='/quizlist' component={QuestionList} />
           <Route path='/transition' render={() => <Transition />} />
           {this.state.user ? <Route path='/form' render={props => <FormApp changeUserState={this.changeUserState} uid={this.state.user.l} />} /> : <div></div>}
@@ -97,6 +77,7 @@ class App extends Component {
           <Route path='/design/components/SelectResolution/SelectResolution' component={SelectResolution} />
           <Route path='/design/components/Image/Image' component={Image} />
           <Route path='/design/components/SelectResolution/SelectResolution' component={SelectResolution} />
+          {console.log("ADMIN",this.state.user,this.state.roomName)}
           <Route path='/admin' render={() =>
             <Admin user={this.state.user} roomName={this.state.roomName} />
           } />
