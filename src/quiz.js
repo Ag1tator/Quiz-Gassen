@@ -6,6 +6,7 @@ import SelectAnswer from './design/components/SelectAnswer/SelectAnswer'
 import Result from './design/components/Result/Result.js'
 import Answer from './design/components/Answer/Answer'
 import Loading from './design/components/Loading/Loading'
+import Admin from './admin'
 
 class Quiz extends React.Component {
   constructor(props) {
@@ -68,7 +69,11 @@ class Quiz extends React.Component {
       console.log(this.state.quiz, this.state.currentQuizNum)
       this.setState({ currentQuizNum: data.currentQuizNum })
 
-      if (data.isResult) {   //順位出す
+      if (data.isAdmin) {
+        this.setState({
+          render: <Admin user={this.props.userData} roomName={null} />
+        })
+      } else if (data.isResult) {   //順位出す
         this.setState({
           render: <Result result={data.result} userData={this.state.userData} />
         })
