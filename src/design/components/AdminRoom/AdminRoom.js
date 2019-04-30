@@ -13,16 +13,7 @@ class AdminRoom extends Component {
         }
     }
 
-    getQuizList = async (list) => {
-        let data = []
-        await Promise.all(list.map(async (name, i) => {
-            firestore.collection('quiz').doc(name).get().then(snap => {
-                data.push(snap.data())
-            })
-        }
-        ))
-        return data
-    }
+
 
     getRoomInfo = (e) => {
         console.log(e.target.className)
@@ -31,16 +22,7 @@ class AdminRoom extends Component {
         this.props.quizHandlerChange(roomData.quiz)
         this.props.roomNameHandler(roomData.roomName)
     }
-    getQuizList = async (list) => {
-        let data = []
-        await Promise.all(list.map(async (name, i) => {
-            firestore.collection('quiz').doc(name).get().then(snap => {
-                data.push(snap.data())
-            })
-        }
-        ))
-        return data
-    }
+
 
     componentDidMount = () => {
         console.log("componentDidMount", this.props)

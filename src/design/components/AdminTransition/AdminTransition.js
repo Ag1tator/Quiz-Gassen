@@ -16,6 +16,7 @@ class AdminTransition extends Component {
         firestore.collection('room').doc(this.state.roomName).onSnapshot(snap => {
             const roomData = snap.data()
             this.setState({ roomData: roomData })
+            this.props.quizCurrentNumChange(roomData.currentQuizNum)
             console.log(this.state.roomData)
         })
 
