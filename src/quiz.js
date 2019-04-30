@@ -44,7 +44,7 @@ class Quiz extends React.Component {
       isCollect: isCollect,
       submitAt: Date.now(),
       displayName: this.state.userData.displayName,
-      imageSrc: this.state.userData.imageSrc
+      imageSrc: this.state.userData.photoURL
     })
     this.setState({ isCollect: isCollect })
     console.log(this.state)
