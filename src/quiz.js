@@ -7,6 +7,7 @@ import Result from './design/components/Result/Result.js'
 import Answer from './design/components/Answer/Answer'
 import Loading from './design/components/Loading/Loading'
 import Admin from './admin'
+import Finish from './design/components/Finish/Finish'
 
 class Quiz extends React.Component {
   constructor(props) {
@@ -75,8 +76,11 @@ class Quiz extends React.Component {
         })
       } else if (data.isResult) {   //順位出す
         this.setState({
-          render: <Result result={data.result} userData={this.state.userData} />
+          render: <Finish />
         })
+        /*this.setState({
+          render: <Result result={data.result} userData={this.state.userData} />
+        })*/
       } else if (data.isCheckAnswer) {    //正解不正解
         this.setState({
           render: <Answer
