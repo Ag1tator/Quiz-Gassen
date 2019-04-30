@@ -96,7 +96,6 @@ class App extends Component {
           <Route path='/selectRoom' render={() => <SelectRoom changeSelectedRoomNameState={this.changeRoomNameState} changeQuestionState={this.changeQuestionState} />} />
           <Route path='/design/components/SelectResolution/SelectResolution' component={SelectResolution} />
           <Route path='/design/components/Image/Image' component={Image} />
-          <Route path='/selectRoom' render={() => <SelectRoom changeSelectedRoomNameState={this.changeRoomNameState} changeQuestionState={this.changeQuestionState} />} />
           <Route path='/design/components/SelectResolution/SelectResolution' component={SelectResolution} />
           <Route path='/admin' render={() =>
             <Admin user={this.state.user} roomName={this.state.roomName} />
