@@ -33,7 +33,7 @@ class Admin extends React.Component {
         this.setState({ roomSnapShot: snap })
 
         if (this.props.roomName) {
-          this.setState({ body: <AdminTransition /> })
+          this.setState({ body: <AdminTransition roomName={this.state.roomName} /> })
         } else if (this.state.roomSnapShot) {
           this.showRoomList()
         } else {
@@ -44,7 +44,7 @@ class Admin extends React.Component {
   moveAdminTransition = () => {
     console.log(this.state)
     this.setState({
-      body: <AdminTransition roomName={this.state.roomName} quizCurrentNumChange={this.quizCurrentNumChange} />
+      body: <AdminTransition roomName={this.state.roomName} quizCurrentNumChange={this.quizCurrentNumChange} quizList={this.state.quizList} />
     })
   }
   showRoomList = () => {

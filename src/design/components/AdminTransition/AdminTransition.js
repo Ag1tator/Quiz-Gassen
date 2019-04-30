@@ -9,7 +9,8 @@ class AdminTransition extends Component {
         console.log(this.props)
         this.state = {
             roomName: this.props.roomName,
-            roomData: null,
+            quizList: this.props.quizList,
+            result: [],
         }
     }
     componentWillMount = () => {
@@ -21,7 +22,23 @@ class AdminTransition extends Component {
         })
 
     }
+    collectAnswer = () => {
+        let answerList = [];
+        console.log(this.state.result)
+        for (let i = 0; i < this.state.quizList.length; i++) {
+            firestore.collection('room').doc(this.state.roomName).collection('quiz' + i).get().then(snap => {
+                snap.forEach(doc => {
+                    console.log(doc.data())
+                    const currentState = this.state.result
+                    currentState.push(doc.data())
+                    this.setState({ result: currentState })
+                });
+            })
+
+        }
+    }
     onClick = () => {
+        this.collectAnswer()
         console.log("clicked!", this.state.roomData.currentQuizNum + 1, this.state.roomData.quiz.length)
         let currentData = this.state.roomData
 
@@ -32,6 +49,7 @@ class AdminTransition extends Component {
             currentData.currentQuizNum++;
             if (this.state.roomData.currentQuizNum === this.state.roomData.quiz.length) { // おわったとき
                 alert("しゅ〜りょ〜")
+
                 currentData.isResult = true;
             }
         } else if (this.state.roomData.isShowImage) {

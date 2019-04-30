@@ -12,6 +12,17 @@ class Result extends Component {
         for (let i in others) {
             list.push(<li>{others[i].displayName}</li>)
         }
+
+        /*
+        result = [
+            {displayName: "たか",
+            imageSrc: "URL",
+            collect: 3},
+           {displayName: "あさしぐれ",
+            imageSrc: "URL",
+            collect: 2},
+        ]
+        */
         for (let i in result) {
             if (result[i].displayName === user) {
                 ranking = Number(i) + 1
